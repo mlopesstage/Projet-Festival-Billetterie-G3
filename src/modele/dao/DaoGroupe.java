@@ -24,8 +24,8 @@ public class DaoGroupe {
      * @param idGroupe identifiant
      * @return objet Groupe
      * @throws SQLException 
-     *
-    public static Groupe selectOne(int idGroupe) throws SQLException {
+     */
+    public static Groupe selectOne(String idGroupe) throws SQLException {
         Groupe unGroupe = null;
         ResultSet rs;
         PreparedStatement pstmt;
@@ -33,17 +33,19 @@ public class DaoGroupe {
         // préparer la requête
         String requete = "SELECT * FROM Groupe WHERE ID= ?";
         pstmt = jdbc.getConnexion().prepareStatement(requete);
-        pstmt.setInt(1, idGroupe);
+        pstmt.setString(1, idGroupe);
         rs = pstmt.executeQuery();
         if (rs.next()) {
-            int id = rs.getInt("id");
-            int idLieu = rs.getInt("idLieu");
-            Date dateRep= rs.getDate("dateRep");
-            Time heureDebut = rs.getTime("heureDebut");
-            Time heureFin = rs.getTime("heureFin");
-            //uneGroupe = new Groupe(id, idLieu, idGroupe, dateRep,heureDebut,heureFin);
+            String id = rs.getString("id");
+            String nom = rs.getString("nom");
+            String identiteResponsable = rs.getString("identiteResponsable");
+            String adresse = rs.getString("adressePostale");
+            int nbPersonne = rs.getInt("nombrePersonnes");
+            String nomPays = rs.getString("nomPays");
+            String hebergement =rs.getString("hebergement");
+            unGroupe = new Groupe(id, nom, identiteResponsable, adresse, nbPersonne, nomPays, hebergement);
         }
-        //return uneGroupe;
+        return unGroupe;
     }
     /**
      * Extraction de toutes les representations
@@ -52,7 +54,7 @@ public class DaoGroupe {
      */
     public static List<Groupe> selectAll() throws SQLException {
         List<Groupe> lesGroupes = new ArrayList<Groupe>();
-        Groupe uneGroupe;
+        Groupe unGroupe;
         ResultSet rs;
         PreparedStatement pstmt;
         Jdbc jdbc = Jdbc.getInstance();
@@ -61,14 +63,15 @@ public class DaoGroupe {
         pstmt = jdbc.getConnexion().prepareStatement(requete);
         rs = pstmt.executeQuery();
         while (rs.next()) {
-            int id = rs.getInt("id");
-            int idLieu = rs.getInt("idLieu");
-            String idGroupe = rs.getString("idGroupe");
-            Date dateRep= rs.getDate("dateRep");
-            Time heureDebut = rs.getTime("heureDebut");
-            Time heureFin = rs.getTime("heureFin");
-           // uneGroupe = new Groupe(id, idLieu, idGroupe, dateRep,heureDebut,heureFin);
-            //lesGroupes.add(uneGroupe);
+            String id = rs.getString("id");
+            String nom = rs.getString("nom");
+            String identiteResponsable = rs.getString("identiteResponsable");
+            String adresse = rs.getString("adressePostale");
+            int nbPersonne = rs.getInt("nombrePersonnes");
+            String nomPays = rs.getString("nomPays");
+            String hebergement =rs.getString("hebergement");
+            unGroupe = new Groupe(id, nom, identiteResponsable, adresse, nbPersonne, nomPays, hebergement);
+            lesGroupes.add(unGroupe);
         }
         return lesGroupes;
     }

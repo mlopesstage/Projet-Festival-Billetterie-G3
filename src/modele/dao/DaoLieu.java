@@ -9,75 +9,65 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import modele.metier.Representation;
+import modele.metier.Lieu;
 
 /**
  *
  * @author ychantreau
  */
-public class DaoRepresentation {
+public class DaoLieu {
     /**
      * Extraction d'une representation, sur son identifiant
-     * @param idRepresentation identifiant
-     * @return objet Representation
+     * @param idLieu identifiant
+     * @return objet Lieu
      * @throws SQLException 
      */
-    public static Representation selectOne(int idRepresentation) throws SQLException {
-        Representation uneRepresentation = null;
+    public static Lieu selectOne(int idLieu) throws SQLException {
+        Lieu unLieu = null;
         ResultSet rs;
         PreparedStatement pstmt;
         Jdbc jdbc = Jdbc.getInstance();
         // préparer la requête
-        String requete = "SELECT * FROM Representation WHERE ID= ?";
+        String requete = "SELECT * FROM Lieu WHERE ID= ?";
         pstmt = jdbc.getConnexion().prepareStatement(requete);
-        pstmt.setInt(1, idRepresentation);
+        pstmt.setInt(1, idLieu);
         rs = pstmt.executeQuery();
         if (rs.next()) {
             int id = rs.getInt("id");
-            int idLieu = rs.getInt("idLieu");
-            String idGroupe = rs.getString("idGroupe");
-            Date dateRep= rs.getDate("dateRep");
-            Time heureD = rs.getTime("heureDebut");
-            Time heureF = rs.getTime("heureFin");
-            LocalTime heureDebut = LocalTime.of(heureD.getHours(),heureD.getMinutes(), heureD.getSeconds(),0);
-            LocalTime heureFin = LocalTime.of(heureD.getHours(),heureD.getMinutes(), heureD.getSeconds(),0);
-            uneRepresentation = new Representation(id, idLieu, idGroupe, dateRep,heureDebut,heureFin);
+            String nomLieu = rs.getString("nomLieu");
+            String adresseLieu = rs.getString("adresseLieu");
+            int capacite = rs.getInt("capaciteAccueil");
+            unLieu = new Lieu(id, nomLieu, adresseLieu, capacite);
         }
-        return uneRepresentation;
+        return unLieu;
     }
-
     /**
      * Extraction de toutes les representations
      * @return collection d'representations
      * @throws SQLException 
      */
-    public static List<Representation> selectAll() throws SQLException {
-        List<Representation> lesRepresentations = new ArrayList<Representation>();
-        Representation uneRepresentation;
+    public static List<Lieu> selectAll() throws SQLException {
+        List<Lieu> lesLieus = new ArrayList<Lieu>();
+        Lieu unLieu;
         ResultSet rs;
         PreparedStatement pstmt;
         Jdbc jdbc = Jdbc.getInstance();
         // préparer la requête
-        String requete = "SELECT * FROM Representation";
+        String requete = "SELECT * FROM Lieu";
         pstmt = jdbc.getConnexion().prepareStatement(requete);
         rs = pstmt.executeQuery();
         while (rs.next()) {
             int id = rs.getInt("id");
-            int idLieu = rs.getInt("idLieu");
-            String idGroupe = rs.getString("idGroupe");
-            Date dateRep= rs.getDate("dateRep");
-            Time heureD = rs.getTime("heureDebut");
-            Time heureF = rs.getTime("heureFin");
-            LocalTime heureDebut = LocalTime.of(heureD.getHours(),heureD.getMinutes(), heureD.getSeconds(),0);
-            LocalTime heureFin = LocalTime.of(heureD.getHours(),heureD.getMinutes(), heureD.getSeconds(),0);
-            uneRepresentation = new Representation(id, idLieu, idGroupe, dateRep,heureDebut,heureFin);
-            lesRepresentations.add(uneRepresentation);
+            String nomLieu = rs.getString("nomLieu");
+            String adresseLieu = rs.getString("adresseLieu");
+            int capacite = rs.getInt("capaciteAccueil");
+            unLieu = new Lieu(id, nomLieu, adresseLieu, capacite);
+            lesLieus.add(unLieu);
         }
-        return lesRepresentations;
+        return lesLieus;
     }
     
         /**
@@ -86,14 +76,14 @@ public class DaoRepresentation {
      * @return collection d'representations
      * @throws SQLException 
      *
-    public static List<Representation> selectAllByVille(String extraitNomVille) throws SQLException {
-        List<Representation> lesRepresentations = new ArrayList<Representation>();
-        Representation uneRepresentation;
+    public static List<Lieu> selectAllByVille(String extraitNomVille) throws SQLException {
+        List<Lieu> lesLieus = new ArrayList<Lieu>();
+        Lieu uneLieu;
         ResultSet rs;
         PreparedStatement pstmt;
         Jdbc jdbc = Jdbc.getInstance();
         // préparer la requête
-        String requete = "SELECT * FROM Representation WHERE ville LIKE ?";
+        String requete = "SELECT * FROM Lieu WHERE ville LIKE ?";
         pstmt = jdbc.getConnexion().prepareStatement(requete);
         pstmt.setString(1, "%"+extraitNomVille+"%");
         rs = pstmt.executeQuery();
@@ -102,10 +92,10 @@ public class DaoRepresentation {
             String rue = rs.getString("RUE");
             String cdp = rs.getString("CDP");
             String ville = rs.getString("VILLE");
-            uneRepresentation = new Representation(id, rue, cdp, ville);
-            lesRepresentations.add(uneRepresentation);
+            uneLieu = new Lieu(id, rue, cdp, ville);
+            lesLieus.add(uneLieu);
         }
-        return lesRepresentations;
+        return lesLieus;
     }    
     /**
      * Extraction de toutes les representations, ordonnées
@@ -114,14 +104,14 @@ public class DaoRepresentation {
      * @return collection de representations
      * @throws SQLException 
      *
-    public static List<Representation> selectAll(int cleTri, int ordreTri) throws SQLException {
-        List<Representation> lesRepresentations = new ArrayList<Representation>();
-        Representation uneRepresentation;
+    public static List<Lieu> selectAll(int cleTri, int ordreTri) throws SQLException {
+        List<Lieu> lesLieus = new ArrayList<Lieu>();
+        Lieu uneLieu;
         ResultSet rs;
         PreparedStatement pstmt;
         Jdbc jdbc = Jdbc.getInstance();
         // préparer la requête
-        String requete = "SELECT * FROM Representation";
+        String requete = "SELECT * FROM Lieu";
         switch (cleTri) {
             case 1: // Tri par Id
                 requete += " ORDER BY ID";
@@ -147,50 +137,50 @@ public class DaoRepresentation {
             String rue = rs.getString("RUE");
             String cdp = rs.getString("CDP");
             String ville = rs.getString("VILLE");
-            uneRepresentation = new Representation(id, rue, cdp, ville);
-            lesRepresentations.add(uneRepresentation);
+            uneLieu = new Lieu(id, rue, cdp, ville);
+            lesLieus.add(uneLieu);
         }
-        return lesRepresentations;
+        return lesLieus;
     }
-    public static int insert(int idRepresentation, Representation uneRepresentation) throws SQLException {
+    public static int insert(int idLieu, Lieu uneLieu) throws SQLException {
         int nb;
         Jdbc jdbc = Jdbc.getInstance();
         String requete;
         ResultSet rs;
         PreparedStatement pstmt;
-        requete = "INSERT INTO Representation (ID, RUE, CDP , VILLE) VALUES (?, ?, ?, ?)";
+        requete = "INSERT INTO Lieu (ID, RUE, CDP , VILLE) VALUES (?, ?, ?, ?)";
         pstmt = jdbc.getConnexion().prepareStatement(requete);
-        pstmt.setInt(1, idRepresentation);
-        pstmt.setString(2, uneRepresentation.getRue());
-        pstmt.setString(3, uneRepresentation.getCp());
-        pstmt.setString(4, uneRepresentation.getVille());
+        pstmt.setInt(1, idLieu);
+        pstmt.setString(2, uneLieu.getRue());
+        pstmt.setString(3, uneLieu.getCp());
+        pstmt.setString(4, uneLieu.getVille());
         nb = pstmt.executeUpdate();
         return nb;
     }
-    public static int update(int idRepresentation, Representation uneRepresentation) throws SQLException {
+    public static int update(int idLieu, Lieu uneLieu) throws SQLException {
         int nb;
         Jdbc jdbc = Jdbc.getInstance();
         String requete;
         ResultSet rs;
         PreparedStatement pstmt;
-        requete = "UPDATE Representation SET RUE = ? , CDP = ? , VILLE = ? WHERE ID = ?";
+        requete = "UPDATE Lieu SET RUE = ? , CDP = ? , VILLE = ? WHERE ID = ?";
         pstmt = jdbc.getConnexion().prepareStatement(requete);
-        pstmt.setString(1, uneRepresentation.getRue());
-        pstmt.setString(2, uneRepresentation.getCp());
-        pstmt.setString(3, uneRepresentation.getVille());
-        pstmt.setInt(4, idRepresentation);
+        pstmt.setString(1, uneLieu.getRue());
+        pstmt.setString(2, uneLieu.getCp());
+        pstmt.setString(3, uneLieu.getVille());
+        pstmt.setInt(4, idLieu);
         nb = pstmt.executeUpdate();
         return nb;
     }
-    public static int delete(int idRepresentation) throws SQLException {
+    public static int delete(int idLieu) throws SQLException {
         int nb;
         Jdbc jdbc = Jdbc.getInstance();
         String requete;
         ResultSet rs;
         PreparedStatement pstmt;
-        requete = "DELETE  FROM Representation WHERE ID = ?";
+        requete = "DELETE  FROM Lieu WHERE ID = ?";
         pstmt = jdbc.getConnexion().prepareStatement(requete);
-        pstmt.setInt(1, idRepresentation);
+        pstmt.setInt(1, idLieu);
         nb = pstmt.executeUpdate();
         return nb;
     }*/
