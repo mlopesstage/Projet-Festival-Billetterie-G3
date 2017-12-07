@@ -9,10 +9,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import modele.metier.Groupe;
+import modele.metier.Lieu;
 import modele.metier.Representation;
 
 /**
@@ -36,16 +39,8 @@ public class DaoRepresentation {
         pstmt = jdbc.getConnexion().prepareStatement(requete);
         pstmt.setInt(1, idRepresentation);
         rs = pstmt.executeQuery();
-        if (rs.next()) {
-            int id = rs.getInt("id");
-            int idLieu = rs.getInt("idLieu");
-            String idGroupe = rs.getString("idGroupe");
-            Date dateRep= rs.getDate("dateRep");
-            Time heureD = rs.getTime("heureDebut");
-            Time heureF = rs.getTime("heureFin");
-            LocalTime heureDebut = LocalTime.of(heureD.getHours(),heureD.getMinutes(), heureD.getSeconds(),0);
-            LocalTime heureFin = LocalTime.of(heureD.getHours(),heureD.getMinutes(), heureD.getSeconds(),0);
-            uneRepresentation = new Representation(id, idLieu, idGroupe, dateRep,heureDebut,heureFin);
+        if (rs.next()) {      
+            uneRepresentation = representationFromResultSet(rs);
         }
         return uneRepresentation;
     }
@@ -62,24 +57,36 @@ public class DaoRepresentation {
         PreparedStatement pstmt;
         Jdbc jdbc = Jdbc.getInstance();
         // préparer la requête
-        String requete = "SELECT * FROM Representation";
+        String requete = "SELECT * FROM Representation ";
         pstmt = jdbc.getConnexion().prepareStatement(requete);
         rs = pstmt.executeQuery();
         while (rs.next()) {
-            int id = rs.getInt("id");
-            int idLieu = rs.getInt("idLieu");
-            String idGroupe = rs.getString("idGroupe");
-            Date dateRep= rs.getDate("dateRep");
-            Time heureD = rs.getTime("heureDebut");
-            Time heureF = rs.getTime("heureFin");
-            LocalTime heureDebut = LocalTime.of(heureD.getHours(),heureD.getMinutes(), heureD.getSeconds(),0);
-            LocalTime heureFin = LocalTime.of(heureD.getHours(),heureD.getMinutes(), heureD.getSeconds(),0);
-            uneRepresentation = new Representation(id, idLieu, idGroupe, dateRep,heureDebut,heureFin);
+            uneRepresentation =  representationFromResultSet(rs);
             lesRepresentations.add(uneRepresentation);
         }
         return lesRepresentations;
     }
     
+        private static Representation representationFromResultSet(ResultSet rs) throws SQLException {
+        Representation rp = null;
+        
+        int id = rs.getInt("id");
+        int idLieu = rs.getInt("idLieu");
+        String idGroupe = rs.getString("idGroupe");
+        Date date= rs.getDate("dateRep");
+        Time heureD = rs.getTime("heureDebut");
+        Time heureF = rs.getTime("heureFin");
+
+        LocalTime heureDebut = LocalTime.of(heureD.getHours(),heureD.getMinutes(), heureD.getSeconds(),0);
+        LocalTime heureFin = LocalTime.of(heureF.getHours(),heureF.getMinutes(), heureF.getSeconds(),0);
+        LocalDate dateRep = LocalDate.of(date.getYear()+1900,date.getMonth()+1, date.getDate());
+        Lieu lieu = DaoLieu.selectOne(idLieu);
+        Groupe groupe = DaoGroupe.selectOne(idGroupe);
+        
+        rp = new Representation(id, lieu, groupe, dateRep,heureDebut,heureFin);
+        
+        return rp;
+    }
         /**
      * Extraction de toutes les representations dont le nom de ville contient la chaîne recherchée
      * @param extraitNomVille

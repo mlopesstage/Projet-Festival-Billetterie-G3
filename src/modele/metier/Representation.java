@@ -5,8 +5,8 @@
  */
 package modele.metier;
 
-import java.sql.Time;import java.time.LocalTime;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  *
@@ -14,25 +14,25 @@ import java.util.Date;
  */
 public class Representation {
     
-    private int id;
+   private int id;
     
-    private int idLieu;
+    private Lieu lieu;
     
-    private String idGroupe;
+    private Groupe groupe;
     
-    private Date dateRep;
+    private LocalDate dateRep;
     
     private LocalTime heureDebut;
     
     private LocalTime heureFin;
-    
-    public Representation (int id,int idLieu,String idGroupe,Date dateRep,LocalTime heureDebut,LocalTime heureFin){
-        this.id=id;
-        this.idLieu=idLieu;
-        this.idGroupe=idGroupe;
-        this.dateRep=dateRep;
-        this.heureDebut=heureDebut;
-        this.heureFin=heureFin;        
+
+    public Representation(int id, Lieu lieu, Groupe groupe, LocalDate dateRep, LocalTime heureDebut, LocalTime heureFin) {
+        this.id = id;
+        this.lieu = lieu;
+        this.groupe = groupe;
+        this.dateRep = dateRep;
+        this.heureDebut = heureDebut;
+        this.heureFin = heureFin;
     }
 
     public int getId() {
@@ -43,27 +43,27 @@ public class Representation {
         this.id = id;
     }
 
-    public int getIdLieu() {
-        return idLieu;
+    public Lieu getLieu() {
+        return lieu;
     }
 
-    public void setIdLieu(int idLieu) {
-        this.idLieu = idLieu;
+    public void setLieu(Lieu lieu) {
+        this.lieu = lieu;
     }
 
-    public String getIdGroupe() {
-        return idGroupe;
+    public Groupe getGroupe() {
+        return groupe;
     }
 
-    public void setIdGroupe(String idGroupe) {
-        this.idGroupe = idGroupe;
+    public void setGroupe(Groupe groupe) {
+        this.groupe = groupe;
     }
 
-    public Date getDateRep() {
+    public LocalDate getDateRep() {
         return dateRep;
     }
 
-    public void setDateRep(Date dateRep) {
+    public void setDateRep(LocalDate dateRep) {
         this.dateRep = dateRep;
     }
 
@@ -85,9 +85,9 @@ public class Representation {
 
     @Override
     public String toString() {
-        return "Representation{" + "id=" + id + ", idLieu=" + idLieu + ", idGroupe=" + idGroupe + ", dateRep=" + dateRep + ", heureDebut=" + heureDebut + ", heureFin=" + heureFin + '}';
+        return "Representation_1{" + "id=" + id + ", lieu=" + lieu + ", groupe=" + groupe + ", dateRep=" + dateRep + ", heureDebut=" + heureDebut + ", heureFin=" + heureFin + '}';
     }
     
-    
+   
 }
 
