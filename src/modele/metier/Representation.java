@@ -5,9 +5,7 @@
  */
 package modele.metier;
 
-import java.sql.Time;
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.sql.Time;import java.time.LocalTime;
 import java.util.Date;
 
 /**
@@ -24,11 +22,11 @@ public class Representation {
     
     private Date dateRep;
     
-    private Time heureDebut;
+    private LocalTime heureDebut;
     
-    private Time heureFin;
+    private LocalTime heureFin;
     
-    public Representation (int id,int idLieu,String idGroupe,Date dateRep,Time heureDebut,Time heureFin){
+    public Representation (int id,int idLieu,String idGroupe,Date dateRep,LocalTime heureDebut,LocalTime heureFin){
         this.id=id;
         this.idLieu=idLieu;
         this.idGroupe=idGroupe;
@@ -69,19 +67,19 @@ public class Representation {
         this.dateRep = dateRep;
     }
 
-    public Time getHeureDebut() {
+    public LocalTime getHeureDebut() {
         return heureDebut;
     }
 
-    public void setHeureDebut(Time heureDebut) {
+    public void setHeureDebut(LocalTime heureDebut) {
         this.heureDebut = heureDebut;
     }
 
-    public Time getHeureFin() {
+    public LocalTime getHeureFin() {
         return heureFin;
     }
 
-    public void setHeureFin(Time heureFin) {
+    public void setHeureFin(LocalTime heureFin) {
         this.heureFin = heureFin;
     }
 
