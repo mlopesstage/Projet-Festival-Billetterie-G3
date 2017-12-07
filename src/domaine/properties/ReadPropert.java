@@ -14,7 +14,7 @@ import java.util.Properties;
  *
  * @author sjudais
  */
-public class ReadPropert {
+public class ReadPropert {  
     public static void main(final String[] args) {
         final Properties prop = new Properties();
 	InputStream input = null;
@@ -30,7 +30,7 @@ public class ReadPropert {
             System.out.println(prop.getProperty("db.url"));
             System.out.println(prop.getProperty("db.username"));
             System.out.println(prop.getProperty("db.password"));
-			
+                  
 
         } catch (final IOException ex) {
             ex.printStackTrace();
