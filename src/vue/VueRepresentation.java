@@ -6,6 +6,7 @@
 package vue;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -38,6 +39,8 @@ public class VueRepresentation extends javax.swing.JFrame {
         jLabelRepresentation = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableRepresentation = new javax.swing.JTable();
+        jLabelRepresentationSelectionnee = new javax.swing.JLabel();
+        jLabelLaRepresentation = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,6 +60,8 @@ public class VueRepresentation extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTableRepresentation);
 
+        jLabelRepresentationSelectionnee.setText("Representation selectionnée :");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -64,12 +69,19 @@ public class VueRepresentation extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(203, 203, 203)
-                        .addComponent(jLabelRepresentation)
-                        .addGap(0, 322, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(203, 203, 203)
+                                .addComponent(jLabelRepresentation))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabelRepresentationSelectionnee)))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE)
+                            .addComponent(jLabelLaRepresentation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -79,7 +91,11 @@ public class VueRepresentation extends javax.swing.JFrame {
                 .addComponent(jLabelRepresentation)
                 .addGap(37, 37, 37)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(86, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabelRepresentationSelectionnee)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabelLaRepresentation, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         pack();
@@ -97,8 +113,18 @@ public class VueRepresentation extends javax.swing.JFrame {
         return modeleTableRepresentation;
     }
 
+    public JLabel getjLabelLaRepresentation() {
+        return jLabelLaRepresentation;
+    }
+
+    public void setjLabelLaRepresentation(JLabel jLabelLaRepresentation) {
+        this.jLabelLaRepresentation = jLabelLaRepresentation;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabelLaRepresentation;
     private javax.swing.JLabel jLabelRepresentation;
+    private javax.swing.JLabel jLabelRepresentationSelectionnee;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableRepresentation;
     // End of variables declaration//GEN-END:variables

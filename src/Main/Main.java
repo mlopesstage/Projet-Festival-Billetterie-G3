@@ -38,6 +38,6 @@ public class Main {
             JOptionPane.showMessageDialog(null, "Main - échec de connexion");
         }
 
+        }
+        
     }
-
-}

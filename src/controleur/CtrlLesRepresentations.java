@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import modele.dao.DaoRepresentation;
@@ -81,32 +82,37 @@ public class CtrlLesRepresentations implements WindowListener, ActionListener, M
             int row = vue.getjTableRepresentation().getSelectedRow();
             // do some stuff
             List<String> numdata = new ArrayList<String>();
-            //int num = Integer.parseInt(vue.getModeleTableRepresentation().getValueAt(row, 0).toString());
+
             LocalTime debut = LocalTime.parse(vue.getModeleTableRepresentation().getValueAt(row, 4).toString());
             LocalTime fin = LocalTime.parse(vue.getModeleTableRepresentation().getValueAt(row, 5).toString());
             LocalDate dateRep = LocalDate.parse(vue.getModeleTableRepresentation().getValueAt(row, 3).toString());
             numdata.add(vue.getModeleTableRepresentation().getValueAt(row, 1).toString());
-            
-            //System.out.println(numdata);
+
             LocalTime now = LocalTime.now();
-            debut = debut.plus(30,ChronoUnit.MINUTES);
+            debut = debut.plus(30, ChronoUnit.MINUTES);
             LocalDate date = LocalDate.now();
-            
-            System.out.println(now);
-            System.out.println(fin);
-            System.out.println(debut);
-            System.out.println(dateRep);
+
 
             //if (date.isAfter(dateRep)) {
-               if (now.isBefore(fin)) {
-                   if(now.isAfter(debut)){
-                       JOptionPane.showConfirmDialog(getVue(), "Aucune vente n’est possible : la représentation a commencé depuis plus de 30 mn", "Representation", JOptionPane.PLAIN_MESSAGE);
-                   }  
-                }else if(now.isAfter(fin)){
-                    JOptionPane.showConfirmDialog(getVue(), "Aucune vente n’est possible : la représentation est terminée", "Representation", JOptionPane.PLAIN_MESSAGE);
-                }
-                //JOptionPane.showConfirmDialog(getVue(), row, "AGENCEB", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (now.isBefore(fin) && now.isAfter(debut)) {
+                JOptionPane.showConfirmDialog(getVue(), "Aucune vente n’est possible : la représentation a commencé depuis plus de 30 mn", "Representation", JOptionPane.PLAIN_MESSAGE);
+            } else if (now.isAfter(fin)) {
+                JOptionPane.showConfirmDialog(getVue(), "Aucune vente n’est possible : la représentation est terminée", "Representation", JOptionPane.PLAIN_MESSAGE);
+            } else {
+                String id = vue.getModeleTableRepresentation().getValueAt(row, 0).toString();
+                String lieu = vue.getModeleTableRepresentation().getValueAt(row, 1).toString();
+                String groupe = vue.getModeleTableRepresentation().getValueAt(row, 2).toString();
+                String dateS = vue.getModeleTableRepresentation().getValueAt(row, 3).toString();
+                String heureD = vue.getModeleTableRepresentation().getValueAt(row, 4).toString();
+                String heureF = vue.getModeleTableRepresentation().getValueAt(row, 5).toString();
+                
+                String label = "Representation n°" + id + " lieu : " + lieu + " groupe : " + groupe + " le " + dateS + " entre " + heureD + " et " + heureF;
+                System.out.println(label);
+                vue.getjLabelLaRepresentation().setText(label);
+                
             }
+            //JOptionPane.showConfirmDialog(getVue(), row, "AGENCEB", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        }
         //}
     }
 
