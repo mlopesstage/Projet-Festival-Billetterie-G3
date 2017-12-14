@@ -106,9 +106,11 @@ public class CtrlLesRepresentations implements WindowListener, ActionListener, M
                 String heureD = vue.getModeleTableRepresentation().getValueAt(row, 4).toString();
                 String heureF = vue.getModeleTableRepresentation().getValueAt(row, 5).toString();
                 
-                String label = "Representation n°" + id + " lieu : " + lieu + " groupe : " + groupe + " le " + dateS + " entre " + heureD + " et " + heureF;
+                String label = "N°" + id + " lieu : " + lieu + " groupe : " + groupe;
+                String label2 = "Le " + dateS + " entre " + heureD + " et " + heureF;
                 System.out.println(label);
                 vue.getjLabelLaRepresentation().setText(label);
+                vue.getjLabelLaRepresentation2().setText(label2);
                 
             }
             //JOptionPane.showConfirmDialog(getVue(), row, "AGENCEB", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
