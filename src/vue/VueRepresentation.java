@@ -65,6 +65,11 @@ public class VueRepresentation extends javax.swing.JFrame {
         jLabelRepresentationSelectionnee.setText("Representation selectionnée :");
 
         jButtonValider.setText("Valider");
+        jButtonValider.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonValiderMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -114,6 +119,12 @@ public class VueRepresentation extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonValiderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonValiderMouseClicked
+        VueMenu g=new VueMenu();
+        g.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButtonValiderMouseClicked
 
     public JLabel getjLabelLaRepresentation2() {
         return jLabelLaRepresentation2;
