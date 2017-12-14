@@ -69,11 +69,8 @@ public class CtrlLesRepresentations implements WindowListener, ActionListener, M
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        /*if (e.getSource().equals(vue.getjTableRepresentation())){
-                //List<Representation> mesRepresentations = DaoRepresentation.selectAllByVille(vue.getjTextFieldVille().getText());
-               // afficherLesRepresentations(mesRepresentations);
-               JOptionPane.showConfirmDialog(getVue(), "MDR ?", "AGENCEB", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-    }*/
+  
+        
     }
 
     @Override

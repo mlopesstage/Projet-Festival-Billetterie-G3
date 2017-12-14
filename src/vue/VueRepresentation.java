@@ -43,6 +43,7 @@ public class VueRepresentation extends javax.swing.JFrame {
         jLabelLaRepresentation = new javax.swing.JLabel();
         jButtonValider = new javax.swing.JButton();
         jLabelLaRepresentation2 = new javax.swing.JLabel();
+        jButtonAnnuler = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,6 +66,18 @@ public class VueRepresentation extends javax.swing.JFrame {
         jLabelRepresentationSelectionnee.setText("Representation selectionnée :");
 
         jButtonValider.setText("Valider");
+        jButtonValider.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonValiderMouseClicked(evt);
+            }
+        });
+
+        jButtonAnnuler.setText("Annuler");
+        jButtonAnnuler.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonAnnulerMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -73,25 +86,26 @@ public class VueRepresentation extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(229, 229, 229)
+                                .addComponent(jLabelRepresentation))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabelLaRepresentation2, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelLaRepresentation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 597, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabelRepresentationSelectionnee)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(229, 229, 229)
-                                .addComponent(jLabelRepresentation))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(248, 248, 248)
-                                .addComponent(jButtonValider))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabelLaRepresentation2, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jButtonAnnuler)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonValider)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -107,13 +121,27 @@ public class VueRepresentation extends javax.swing.JFrame {
                 .addComponent(jLabelLaRepresentation, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelLaRepresentation2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                .addComponent(jButtonValider)
-                .addGap(26, 26, 26))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonValider)
+                    .addComponent(jButtonAnnuler))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonValiderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonValiderMouseClicked
+        VueMenu g=new VueMenu();
+        g.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButtonValiderMouseClicked
+
+    private void jButtonAnnulerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonAnnulerMouseClicked
+        VueMenu g=new VueMenu();
+        g.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButtonAnnulerMouseClicked
 
     public JLabel getjLabelLaRepresentation2() {
         return jLabelLaRepresentation2;
@@ -144,6 +172,7 @@ public class VueRepresentation extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAnnuler;
     private javax.swing.JButton jButtonValider;
     private javax.swing.JLabel jLabelLaRepresentation;
     private javax.swing.JLabel jLabelLaRepresentation2;
