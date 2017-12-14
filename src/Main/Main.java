@@ -29,8 +29,11 @@ public class Main {
             //VueLesClients vueClient = new VueLesClients();
             CtrlLesRepresentations unControleur = new CtrlLesRepresentations(uneVue);
             //CtrlLesClients controleurClient = new CtrlLesClients(vueClient);
+            VueMenu vuMenu = new VueMenu();
+            CtrlPrincipal unCtrlPrincipal = new CtrlPrincipal(vuMenu);
             // afficher la vue
-            uneVue.setVisible(true);
+            vuMenu.setVisible(true);
+            uneVue.setVisible(false);
             //vueClient.setVisible(true);
         } catch (ClassNotFoundException ex) {
             JOptionPane.showMessageDialog(null, "Main - classe JDBC non trouvée");

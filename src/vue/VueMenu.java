@@ -5,6 +5,8 @@
  */
 package vue;
 
+import javax.swing.JButton;
+
 /**
  *
  * @author btssio
@@ -128,4 +130,12 @@ public class VueMenu extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
+
+    public JButton getjButton1() {
+        return jButton1;
+    }
+
+    public void setjButton1(JButton jButton1) {
+        this.jButton1 = jButton1;
+    }
 }
