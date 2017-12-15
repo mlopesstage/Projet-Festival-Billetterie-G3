@@ -8,7 +8,11 @@ package Main;
 import modele.dao.Jdbc;
 import vue.*;
 import controleur.*;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.SQLException;
+import java.util.Properties;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,25 +26,54 @@ public class Main {
      */
     public static void main(String[] args) {
 //        Jdbc.creer("oracle.jdbc.driver.OracleDriver", "jdbc:oracle:thin:", "@localhost:1521:XE", "", "btssio", "btssio");
-        Jdbc.creer("com.mysql.jdbc.Driver", "jdbc:mysql:", "//localhost/", "festival2", "root", "joliverie");
+        final Properties prop = new Properties();
+	InputStream input = null;
+        
         try {
-            Jdbc.getInstance().connecter();
-            VueRepresentation uneVue = new VueRepresentation();
-            //VueLesClients vueClient = new VueLesClients();
-            CtrlLesRepresentations unControleur = new CtrlLesRepresentations(uneVue);
-            //CtrlLesClients controleurClient = new CtrlLesClients(vueClient);
-            VueMenu vuMenu = new VueMenu();
-            CtrlPrincipal unCtrlPrincipal = new CtrlPrincipal(vuMenu);
-            // afficher la vue
-            vuMenu.setVisible(true);
-            uneVue.setVisible(false);
-            //vueClient.setVisible(true);
-        } catch (ClassNotFoundException ex) {
-            JOptionPane.showMessageDialog(null, "Main - classe JDBC non trouvée");
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Main - échec de connexion");
-        }
 
+            input = new FileInputStream("src/domaine/properties/config.properties");
+
+            // load a properties file
+            prop.load(input);
+
+            // get the property value and print it out
+            String pilote = prop.getProperty("pilote");
+            String protocole = prop.getProperty("protocole");
+            String serveur = prop.getProperty("serveur");
+            String base = prop.getProperty("base");
+            String login = prop.getProperty("login");
+            String mdp = prop.getProperty("mdp");
+            Jdbc.creer(pilote, protocole, serveur, base, login, mdp);
+            try {
+                Jdbc.getInstance().connecter();
+                VueRepresentation uneVue = new VueRepresentation();
+                //VueLesClients vueClient = new VueLesClients();
+                CtrlLesRepresentations unControleur = new CtrlLesRepresentations(uneVue);
+                //CtrlLesClients controleurClient = new CtrlLesClients(vueClient);
+                VueMenu vuMenu = new VueMenu();
+                CtrlPrincipal unCtrlPrincipal = new CtrlPrincipal(vuMenu);
+                // afficher la vue
+                vuMenu.setVisible(true);
+                uneVue.setVisible(false);
+                //vueClient.setVisible(true);
+            } catch (ClassNotFoundException ex) {
+                JOptionPane.showMessageDialog(null, "Main - classe JDBC non trouvée");
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Main - échec de connexion");
+            }
+
+        } catch (final IOException ex) {
+            ex.printStackTrace();
+	} finally {
+            if (input != null) {
+		try {
+                    input.close();
+		} catch (final IOException e) {
+                    e.printStackTrace();
+		}
+            }
+        }
+        
         }
         
     }

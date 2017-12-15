@@ -9,6 +9,7 @@ import modele.dao.DaoRepresentation;
 import modele.metier.Representation;
 import vue.VueMenu;
 import vue.VueRepresentation;
+import vue.VueVenteDePlaces;
 /**
  *
  * @author mlopes
@@ -16,8 +17,10 @@ import vue.VueRepresentation;
 
 
 public class CtrlPrincipal implements WindowListener, ActionListener {
-    private CtrlLesRepresentations ctrlLesRepresentations = null;
+    
     private VueMenu vue;
+    VueVenteDePlaces vueVentes = new VueVenteDePlaces();
+    //CtrlVenteDePlaces ctrlVente = new CtrlVenteDePlaces(vue2);
 
     VueRepresentation vueRepresentation = new VueRepresentation();
     CtrlLesRepresentations unControleur = new CtrlLesRepresentations(vueRepresentation);
@@ -26,20 +29,26 @@ public class CtrlPrincipal implements WindowListener, ActionListener {
         this.vue = vue;
         this.vue.addWindowListener(this);
         vue.getjButton1().addActionListener(this);
+        vue.getjButton2().addActionListener(this);
     }
     
     public void afficherLesRepresentations(){
-        this.vue.setVisible(false);
-        vueRepresentation.setVisible(true);
+        vueRepresentation.setVisible(true);    
+        vue.setVisible(false);
+    }
+    
+     public void afficherVentes(){
+        vueVentes.setVisible(true);    
+        vue.setVisible(false);
     }
     
     
     public CtrlLesRepresentations getCtrlLesRepresentations() {
-        return ctrlLesRepresentations;
+        return unControleur;
     }
 
-    public void setCtrlLesRepresentations(CtrlLesRepresentations ctrlLesRepresentations) {
-        this.ctrlLesRepresentations = ctrlLesRepresentations;
+    public void setCtrlLesRepresentations(CtrlLesRepresentations unControleur) {
+        this.unControleur = unControleur;
     }
     
     private void quitter() {
@@ -93,6 +102,8 @@ public class CtrlPrincipal implements WindowListener, ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(vue.getjButton1())) {
             afficherLesRepresentations();
+        } else if (e.getSource().equals(vue.getjButton2())) {
+            afficherVentes();
         }
     }
     

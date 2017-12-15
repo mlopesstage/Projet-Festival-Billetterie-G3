@@ -138,4 +138,13 @@ public class VueMenu extends javax.swing.JFrame {
     public void setjButton1(JButton jButton1) {
         this.jButton1 = jButton1;
     }
+
+    public JButton getjButton2() {
+        return jButton2;
+    }
+    
+    public void setjButton2(JButton jButton2) {
+        this.jButton2 = jButton2;
+    }
+ 
 }

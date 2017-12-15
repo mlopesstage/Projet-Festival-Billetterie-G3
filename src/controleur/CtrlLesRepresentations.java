@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import modele.dao.DaoRepresentation;
 import modele.metier.Representation;
+import vue.VueMenu;
 import vue.VueRepresentation;
 
 /**
@@ -28,6 +29,7 @@ import vue.VueRepresentation;
 public class CtrlLesRepresentations implements WindowListener, ActionListener, MouseListener {
 
     private VueRepresentation vue; // LA VUE
+    VueMenu vueMenu = new VueMenu();
 
     public CtrlLesRepresentations(VueRepresentation vue) {
         this.vue = vue;
@@ -43,6 +45,12 @@ public class CtrlLesRepresentations implements WindowListener, ActionListener, M
             JOptionPane.showMessageDialog(getVue(), "CtrlLesRepresentations - échec de sélection des representations");
         }
         afficherLesRepresentations(lesRepresentations);
+    }
+    
+    public void afficherLeMenu(){
+        vueMenu.setVisible(true);
+        vue.setVisible(false);
+        
     }
 
     // contrôle de la vue
@@ -69,7 +77,9 @@ public class CtrlLesRepresentations implements WindowListener, ActionListener, M
 
     @Override
     public void actionPerformed(ActionEvent e) {
-  
+        if (e.getSource().equals(vue.getjButtonAnnuler())) {
+            afficherLeMenu();
+        }
         
     }
 
