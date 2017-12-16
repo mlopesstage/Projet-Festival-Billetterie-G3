@@ -148,16 +148,11 @@ public class VueRepresentation extends javax.swing.JFrame {
     }
 
     private void jButtonValiderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonValiderMouseClicked
-        VueMenu g=new VueMenu();
-        g.setVisible(true);
-        this.setVisible(false);
+
     }//GEN-LAST:event_jButtonValiderMouseClicked
 
     private void jButtonAnnulerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonAnnulerMouseClicked
-        //VueMenu vuMenu=new VueMenu();       
-        //vuMenu.setVisible(true);    
-        //this.setVisible(false);
-        
+      
     }//GEN-LAST:event_jButtonAnnulerMouseClicked
 
     public JLabel getjLabelLaRepresentation2() {

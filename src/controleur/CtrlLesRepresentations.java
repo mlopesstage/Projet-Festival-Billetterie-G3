@@ -28,13 +28,15 @@ import vue.VueRepresentation;
  */
 public class CtrlLesRepresentations implements WindowListener, ActionListener, MouseListener {
 
-    private VueRepresentation vue; // LA VUE
-    VueMenu vueMenu = new VueMenu();
+    VueRepresentation vue; // LA VUE   
+    //VueMenu vueMenu = new VueMenu();
 
     public CtrlLesRepresentations(VueRepresentation vue) {
         this.vue = vue;
         // le contrôleur écoute la vue
         this.vue.addWindowListener(this);
+        this.vue.getjButtonAnnuler().addActionListener(this);
+        this.vue.getjButtonValider().addActionListener(this);
         vue.getjTableRepresentation().addMouseListener(this);
         //vue.getjTextFieldVille().addActionListener(this);
         // préparer l'état iniitial de la vue
@@ -48,7 +50,6 @@ public class CtrlLesRepresentations implements WindowListener, ActionListener, M
     }
     
     public void afficherLeMenu(){
-        vueMenu.setVisible(true);
         vue.setVisible(false);
         
     }
@@ -77,7 +78,7 @@ public class CtrlLesRepresentations implements WindowListener, ActionListener, M
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource().equals(vue.getjButtonAnnuler())) {
+        if (e.getSource().equals(vue.getjButtonAnnuler()) || (e.getSource().equals(vue.getjButtonValider()))) {
             afficherLeMenu();
         }
         

@@ -10,7 +10,7 @@ import modele.metier.Representation;
  * @author mlopes
  */
 
-public class DaoVenteDePlaces {
+/*public class DaoVenteDePlaces {
     public static int update(int idRepresentation, Representation uneRepresentation) throws SQLException {
         int nb;
         Jdbc jdbc = Jdbc.getInstance();
@@ -26,4 +26,4 @@ public class DaoVenteDePlaces {
         nb = pstmt.executeUpdate();
         return nb;
     }
-}
+}*/

@@ -5,6 +5,8 @@
  */
 package vue;
 
+import javax.swing.JButton;
+
 /**
  *
  * @author mlopes
@@ -128,9 +130,7 @@ public class VueVenteDePlaces extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonValiderActionPerformed
 
     private void jButtonAnnulerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonAnnulerMouseClicked
-        VueMenu g = new VueMenu();
-        g.setVisible(true);
-        this.setVisible(false);
+
     }//GEN-LAST:event_jButtonAnnulerMouseClicked
 
     /**
@@ -176,4 +176,12 @@ public class VueVenteDePlaces extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelVenteDePlaces;
     private javax.swing.JTextField jTextFieldNbPlace;
     // End of variables declaration//GEN-END:variables
+
+    public JButton getjButtonAnnuler() {
+        return jButtonAnnuler;
+    }
+
+    public void setjButtonAnnuler(JButton jButtonAnnuler) {
+        this.jButtonAnnuler = jButtonAnnuler;
+    }
 }

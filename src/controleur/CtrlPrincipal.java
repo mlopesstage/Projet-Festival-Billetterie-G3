@@ -18,37 +18,46 @@ import vue.VueVenteDePlaces;
 
 public class CtrlPrincipal implements WindowListener, ActionListener {
     
-    private VueMenu vue;
+    VueMenu vue = new VueMenu();
     VueVenteDePlaces vueVentes = new VueVenteDePlaces();
-    //CtrlVenteDePlaces ctrlVente = new CtrlVenteDePlaces(vue2);
 
     VueRepresentation vueRepresentation = new VueRepresentation();
-    CtrlLesRepresentations unControleur = new CtrlLesRepresentations(vueRepresentation);
+    CtrlLesRepresentations ctrlRep = new CtrlLesRepresentations(vueRepresentation);
+    CtrlVenteDePlaces ctrlVentes = new CtrlVenteDePlaces(vueVentes);
+
+
     
     public CtrlPrincipal(VueMenu vue) {
         this.vue = vue;
         this.vue.addWindowListener(this);
         vue.getjButton1().addActionListener(this);
         vue.getjButton2().addActionListener(this);
+        vue.getjButton3().addActionListener(this);
     }
     
     public void afficherLesRepresentations(){
         vueRepresentation.setVisible(true);    
-        vue.setVisible(false);
     }
     
      public void afficherVentes(){
-        vueVentes.setVisible(true);    
-        vue.setVisible(false);
+        vueVentes.setVisible(true);
     }
     
     
     public CtrlLesRepresentations getCtrlLesRepresentations() {
-        return unControleur;
+        return ctrlRep;
     }
 
-    public void setCtrlLesRepresentations(CtrlLesRepresentations unControleur) {
-        this.unControleur = unControleur;
+    public void setCtrlLesRepresentations(CtrlLesRepresentations ctrlRep) {
+        this.ctrlRep = ctrlRep;
+    }
+    
+    public CtrlVenteDePlaces getCtrlVentes() {
+        return ctrlVentes;
+    }
+
+    public void setCtrlVentes(CtrlVenteDePlaces ctrlVentes) {
+        this.ctrlVentes = ctrlVentes;
     }
     
     private void quitter() {
