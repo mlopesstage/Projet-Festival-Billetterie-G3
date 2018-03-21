@@ -88,6 +88,7 @@ public class DaoRepresentation {
         
         return rp;
     }
+        
     public static int vendreRepresentation(int idRepresentation,int nbPlacesVendues) throws SQLException {
         int nb;
         Jdbc jdbc = Jdbc.getInstance();
@@ -99,6 +100,7 @@ public class DaoRepresentation {
         pstmt.setInt(1, nbPlacesVendues);
         pstmt.setInt(2, idRepresentation);
         nb = pstmt.executeUpdate();
+        System.out.println(nbPlacesVendues + " places vendues");
         return nb;
     }
         /**

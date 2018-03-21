@@ -7,6 +7,7 @@ package vue;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 /**
  *
@@ -94,11 +95,11 @@ public class VueVente extends javax.swing.JFrame {
                                     .addComponent(jLabelNbPlace))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jTextFieldNbPlace, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
                                         .addGap(84, 84, 84)
-                                        .addComponent(jButtonAnnuler)))))))
+                                        .addComponent(jButtonAnnuler))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jTextFieldNbPlace, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addContainerGap(56, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -187,7 +188,9 @@ public class VueVente extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldNbPlace;
     // End of variables declaration//GEN-END:variables
 
-    
+    public JTextField getjTextFieldNbPlace(){
+        return jTextFieldNbPlace;
+    }
     public JLabel getjLabelLaRepresentation(){
         return jLabelLaRepresentation;
     }
