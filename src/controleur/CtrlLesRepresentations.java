@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import static java.lang.Integer.parseInt;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -28,16 +29,25 @@ import vue.VueRepresentation;
  */
 public class CtrlLesRepresentations implements WindowListener, ActionListener, MouseListener {
 
-    VueRepresentation vue; // LA VUE   
+    VueRepresentation vue; // LA VUE
+    int idRep;
+    String id;
+    String lieu;
+    String groupe;
+    String dateS;
+    String heureD;
+    String heureF;
+    private CtrlPrincipal ctrlPrincipal;
     //VueMenu vueMenu = new VueMenu();
 
-    public CtrlLesRepresentations(VueRepresentation vue) {
+    public CtrlLesRepresentations(VueRepresentation vue,CtrlPrincipal ctrl) {
         this.vue = vue;
         // le contrôleur écoute la vue
         this.vue.addWindowListener(this);
         this.vue.getjButtonAnnuler().addActionListener(this);
-        this.vue.getjButtonValider().addActionListener(this);
+        this.vue.getjButtonVendre().addActionListener(this);
         vue.getjTableRepresentation().addMouseListener(this);
+        this.ctrlPrincipal = ctrl;
         //vue.getjTextFieldVille().addActionListener(this);
         // préparer l'état iniitial de la vue
         List<Representation> lesRepresentations = null;
@@ -47,11 +57,6 @@ public class CtrlLesRepresentations implements WindowListener, ActionListener, M
             JOptionPane.showMessageDialog(getVue(), "CtrlLesRepresentations - échec de sélection des representations");
         }
         afficherLesRepresentations(lesRepresentations);
-    }
-    
-    public void afficherLeMenu(){
-        vue.setVisible(false);
-        
     }
 
     // contrôle de la vue
@@ -75,11 +80,14 @@ public class CtrlLesRepresentations implements WindowListener, ActionListener, M
             getVue().getModeleTableRepresentation().addRow(ligneDonnees);
         }
     }
+   
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource().equals(vue.getjButtonAnnuler()) || (e.getSource().equals(vue.getjButtonValider()))) {
-            afficherLeMenu();
+        if (e.getSource().equals(vue.getjButtonAnnuler())) {
+            ctrlPrincipal.afficherLeMenu();
+        }else if(e.getSource().equals(vue.getjButtonVendre())){
+            ctrlPrincipal.afficherVente(ctrlPrincipal.getIdRep());
         }
         
     }
@@ -107,12 +115,13 @@ public class CtrlLesRepresentations implements WindowListener, ActionListener, M
             } else if (now.isAfter(fin)) {
                 JOptionPane.showConfirmDialog(getVue(), "Aucune vente n’est possible : la représentation est terminée", "Representation", JOptionPane.PLAIN_MESSAGE);
             } else {
-                String id = vue.getModeleTableRepresentation().getValueAt(row, 0).toString();
-                String lieu = vue.getModeleTableRepresentation().getValueAt(row, 1).toString();
-                String groupe = vue.getModeleTableRepresentation().getValueAt(row, 2).toString();
-                String dateS = vue.getModeleTableRepresentation().getValueAt(row, 3).toString();
-                String heureD = vue.getModeleTableRepresentation().getValueAt(row, 4).toString();
-                String heureF = vue.getModeleTableRepresentation().getValueAt(row, 5).toString();
+                id = vue.getModeleTableRepresentation().getValueAt(row, 0).toString();
+                ctrlPrincipal.setIdRep(parseInt(id));
+                lieu = vue.getModeleTableRepresentation().getValueAt(row, 1).toString();
+                groupe = vue.getModeleTableRepresentation().getValueAt(row, 2).toString();
+                dateS = vue.getModeleTableRepresentation().getValueAt(row, 3).toString();
+                heureD = vue.getModeleTableRepresentation().getValueAt(row, 4).toString();
+                heureF = vue.getModeleTableRepresentation().getValueAt(row, 5).toString();
                 
                 String label = "N°" + id + " lieu : " + lieu + " groupe : " + groupe;
                 String label2 = "Le " + dateS + " entre " + heureD + " et " + heureF;
@@ -141,6 +150,14 @@ public class CtrlLesRepresentations implements WindowListener, ActionListener, M
     // ACCESSEURS et MUTATEURS
     public VueRepresentation getVue() {
         return vue;
+    }
+
+    public int getIdRep() {
+        return idRep;
+    }
+
+    public void setIdRep(int idRep) {
+        this.idRep = idRep;
     }
 
     public void setVue(VueRepresentation vue) {

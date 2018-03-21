@@ -1,119 +1,76 @@
 package controleur;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import modele.dao.DaoRepresentation;
-import modele.metier.Representation;
-import vue.VueMenu;
-import vue.VueRepresentation;
-import vue.VueVenteDePlaces;
 /**
  *
  * @author mlopes
  */
 
 
-public class CtrlPrincipal implements WindowListener, ActionListener {
+public class CtrlPrincipal {
     
-    VueMenu vue = new VueMenu();
-    VueVenteDePlaces vueVentes = new VueVenteDePlaces();
-
-    VueRepresentation vueRepresentation = new VueRepresentation();
-    CtrlLesRepresentations ctrlRep = new CtrlLesRepresentations(vueRepresentation);
-    CtrlVenteDePlaces ctrlVentes = new CtrlVenteDePlaces(vueVentes);
-
-
+    private CtrlLesRepresentations ctrlLesRepresentations;
+    private CtrlMenu ctrlMenu;
+    private CtrlVente ctrlVente;
+    private int idRep;
     
-    public CtrlPrincipal(VueMenu vue) {
-        this.vue = vue;
-        this.vue.addWindowListener(this);
-        vue.getjButton1().addActionListener(this);
-        vue.getjButton2().addActionListener(this);
-        vue.getjButton3().addActionListener(this);
+    public void afficherLeMenu() {
+        this.ctrlLesRepresentations.getVue().setVisible(false);
+        this.ctrlVente.getVue().setVisible(false);
+        this.ctrlMenu.getVue().setVisible(true);
     }
     
-    public void afficherLesRepresentations(){
-        vueRepresentation.setVisible(true);    
+    public void afficherLesRepresentations() {
+        this.ctrlLesRepresentations.getVue().setVisible(true);
+        this.ctrlVente.getVue().setVisible(false);
+        this.ctrlMenu.getVue().setVisible(false);
     }
     
-     public void afficherVentes(){
-        vueVentes.setVisible(true);
+    public void afficherVente(int idRep) {
+        this.ctrlLesRepresentations.getVue().setVisible(false);
+        this.ctrlVente.getVue().setVisible(true);
+        this.ctrlMenu.getVue().setVisible(false);
+        this.idRep = idRep;
     }
     
-    
-    public CtrlLesRepresentations getCtrlLesRepresentations() {
-        return ctrlRep;
-    }
-
-    public void setCtrlLesRepresentations(CtrlLesRepresentations ctrlRep) {
-        this.ctrlRep = ctrlRep;
-    }
-    
-    public CtrlVenteDePlaces getCtrlVentes() {
-        return ctrlVentes;
-    }
-
-    public void setCtrlVentes(CtrlVenteDePlaces ctrlVentes) {
-        this.ctrlVentes = ctrlVentes;
-    }
-    
-    private void quitter() {
+    public void quitter() {
         // Confirmer avant de quitter
-        int rep = JOptionPane.showConfirmDialog(getVue(), "Quitter l'application\nEtes-vous sûr(e) ?", "Menu", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        int rep = JOptionPane.showConfirmDialog(null, "Quitter l'application\nEtes-vous sûr(e) ?", "Menu", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (rep == JOptionPane.YES_OPTION) {
             // mettre fin à l'application
             System.exit(0);
         }
     }
-    
-    public VueMenu getVue() {
-        return vue;
+
+    public int getIdRep() {
+        return idRep;
     }
 
-    public void setVue(VueMenu vue) {
-        this.vue = vue;
-    }
-    
-    // REACTIONS EVENEMENTIELLES
-    @Override
-    public void windowOpened(WindowEvent e) {
+    public void setIdRep(int idRep) {
+        this.idRep = idRep;
     }
 
-    @Override
-    public void windowClosing(WindowEvent e) {
-        quitter();
+    public CtrlLesRepresentations getCtrlLesRepresentations() {
+        return ctrlLesRepresentations;
     }
 
-    @Override
-    public void windowClosed(WindowEvent e) {
+    public void setCtrlLesRepresentations(CtrlLesRepresentations ctrlLesRepresentations) {
+        this.ctrlLesRepresentations = ctrlLesRepresentations;
     }
 
-    @Override
-    public void windowIconified(WindowEvent e) {
+    public CtrlMenu getCtrlMenu() {
+        return ctrlMenu;
     }
 
-    @Override
-    public void windowDeiconified(WindowEvent e) {
+    public void setCtrlMenu(CtrlMenu ctrlMenu) {
+        this.ctrlMenu = ctrlMenu;
     }
 
-    @Override
-    public void windowActivated(WindowEvent e) {
+    public CtrlVente getCtrlVente() {
+        return ctrlVente;
     }
 
-    @Override
-    public void windowDeactivated(WindowEvent e) {
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource().equals(vue.getjButton1())) {
-            afficherLesRepresentations();
-        } else if (e.getSource().equals(vue.getjButton2())) {
-            afficherVentes();
-        }
+    public void setCtrlVente(CtrlVente ctrlVente) {
+        this.ctrlVente = ctrlVente;
     }
     
 }

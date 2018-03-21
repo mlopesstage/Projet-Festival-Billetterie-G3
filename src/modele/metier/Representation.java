@@ -25,15 +25,27 @@ public class Representation {
     private LocalTime heureDebut;
     
     private LocalTime heureFin;
+    
+    private int nbPlacesVendues;
 
-    public Representation(int id, Lieu lieu, Groupe groupe, LocalDate dateRep, LocalTime heureDebut, LocalTime heureFin) {
+    public Representation(int id, Lieu lieu, Groupe groupe, LocalDate dateRep, LocalTime heureDebut, LocalTime heureFin,int nbPlacesVendues) {
         this.id = id;
         this.lieu = lieu;
         this.groupe = groupe;
         this.dateRep = dateRep;
         this.heureDebut = heureDebut;
         this.heureFin = heureFin;
+        this.nbPlacesVendues = nbPlacesVendues;
     }
+
+    public int getNbPlacesVendues() {
+        return nbPlacesVendues;
+    }
+
+    public void setNbPlacesVendues(int nbPlacesVendues) {
+        this.nbPlacesVendues = nbPlacesVendues;
+    }
+    
 
     public int getId() {
         return id;

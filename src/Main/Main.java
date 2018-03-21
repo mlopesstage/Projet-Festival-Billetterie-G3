@@ -24,13 +24,14 @@ public class Main {
     /**
      * @param args the command line arguments
      */
+
     public static void main(String[] args) {
 //        Jdbc.creer("oracle.jdbc.driver.OracleDriver", "jdbc:oracle:thin:", "@localhost:1521:XE", "", "btssio", "btssio");
         final Properties prop = new Properties();
 	InputStream input = null;
         
         try {
-
+          
             input = new FileInputStream("src/domaine/properties/config.properties");
 
             // load a properties file
@@ -46,16 +47,17 @@ public class Main {
             Jdbc.creer(pilote, protocole, serveur, base, login, mdp);
             try {
                 Jdbc.getInstance().connecter();
-                VueRepresentation uneVue = new VueRepresentation();
-                //VueLesClients vueClient = new VueLesClients();
-                CtrlLesRepresentations unControleur = new CtrlLesRepresentations(uneVue);
-                //CtrlLesClients controleurClient = new CtrlLesClients(vueClient);
-                VueMenu vuMenu = new VueMenu();
-                CtrlPrincipal unCtrlPrincipal = new CtrlPrincipal(vuMenu);
-                // afficher la vue
-                vuMenu.setVisible(true);
-                uneVue.setVisible(false);
-                //vueClient.setVisible(true);
+                CtrlPrincipal leControleurPrincipal = new CtrlPrincipal();
+                VueMenu leMenu = new VueMenu();
+                CtrlMenu ctrlLeMenu = new CtrlMenu(leMenu, leControleurPrincipal);
+                VueRepresentation vueRepresentation = new VueRepresentation();
+                CtrlLesRepresentations ctrlLesRepresentations = new CtrlLesRepresentations(vueRepresentation, leControleurPrincipal);
+                VueVente laVente = new VueVente();
+                CtrlVente ctrlLaVente = new CtrlVente(laVente, leControleurPrincipal);
+                leControleurPrincipal.setCtrlMenu(ctrlLeMenu);
+                leControleurPrincipal.setCtrlLesRepresentations(ctrlLesRepresentations);
+                leControleurPrincipal.setCtrlVente(ctrlLaVente);
+                leMenu.setVisible(true);
             } catch (ClassNotFoundException ex) {
                 JOptionPane.showMessageDialog(null, "Main - classe JDBC non trouvée");
             } catch (SQLException ex) {
@@ -73,7 +75,5 @@ public class Main {
 		}
             }
         }
-        
-        }
-        
     }
+}

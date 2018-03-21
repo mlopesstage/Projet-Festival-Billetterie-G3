@@ -24,7 +24,7 @@ public class TestRepresentation {
         LocalDate uneDate = LocalDate.of(2017,12,11);
         LocalTime heureD = LocalTime.of(19,0,0,0);
         LocalTime heureF = LocalTime.of(20,0,0,0);
-        rp = new Representation(3,lieu,grp,uneDate, heureD, heureF);
+        rp = new Representation(3,lieu,grp,uneDate, heureD, heureF,0);
         System.out.println(rp);
     }
 }

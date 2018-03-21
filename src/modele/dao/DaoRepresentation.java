@@ -83,7 +83,7 @@ public class DaoRepresentation {
         Lieu lieu = DaoLieu.selectOne(idLieu);
         Groupe groupe = DaoGroupe.selectOne(idGroupe);
         
-        rp = new Representation(id, lieu, groupe, dateRep,heureDebut,heureFin);
+        rp = new Representation(id, lieu, groupe, dateRep,heureDebut,heureFin,0);
         
         return rp;
     }

@@ -6,17 +6,18 @@
 package vue;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 
 /**
  *
  * @author mlopes
  */
-public class VueVenteDePlaces extends javax.swing.JFrame {
+public class VueVente extends javax.swing.JFrame {
 
     /**
      * Creates new form VueVenteDePlaces
      */
-    public VueVenteDePlaces() {
+    public VueVente() {
         initComponents();
     }
 
@@ -30,9 +31,9 @@ public class VueVenteDePlaces extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabelVenteDePlaces = new javax.swing.JLabel();
-        jPanelVenteDePlaces = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jLabelLaRepresentation = new javax.swing.JLabel();
+        jLabelLaRepresentation2 = new javax.swing.JLabel();
+        jLabelLaRepresentation3 = new javax.swing.JLabel();
         jLabelNbPlace = new javax.swing.JLabel();
         jTextFieldNbPlace = new javax.swing.JTextField();
         jButtonValider = new javax.swing.JButton();
@@ -42,25 +43,6 @@ public class VueVenteDePlaces extends javax.swing.JFrame {
 
         jLabelVenteDePlaces.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
         jLabelVenteDePlaces.setText("Vente de places");
-
-        jPanelVenteDePlaces.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        javax.swing.GroupLayout jPanelVenteDePlacesLayout = new javax.swing.GroupLayout(jPanelVenteDePlaces);
-        jPanelVenteDePlaces.setLayout(jPanelVenteDePlacesLayout);
-        jPanelVenteDePlacesLayout.setHorizontalGroup(
-            jPanelVenteDePlacesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanelVenteDePlacesLayout.setVerticalGroup(
-            jPanelVenteDePlacesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelVenteDePlacesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
-        );
 
         jLabelNbPlace.setText("Nombre de place(s) :");
 
@@ -89,43 +71,56 @@ public class VueVenteDePlaces extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(127, 127, 127)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabelNbPlace)
+                    .addComponent(jButtonValider))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addComponent(jLabelVenteDePlaces))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonAnnuler)
+                        .addGap(241, 241, 241))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButtonValider)
-                            .addComponent(jLabelNbPlace))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextFieldNbPlace, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(60, 60, 60)
-                                .addComponent(jButtonAnnuler))))
+                        .addGap(121, 121, 121)
+                        .addComponent(jTextFieldNbPlace, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(379, 379, 379)
+                .addComponent(jLabelVenteDePlaces)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(210, 210, 210)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jPanelVenteDePlaces, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(28, Short.MAX_VALUE))
+                        .addComponent(jLabelLaRepresentation3, javax.swing.GroupLayout.PREFERRED_SIZE, 605, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 134, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelLaRepresentation2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelLaRepresentation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(209, 209, 209))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(6, 6, 6)
                 .addComponent(jLabelVenteDePlaces)
+                .addGap(52, 52, 52)
+                .addComponent(jLabelLaRepresentation, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanelVenteDePlaces, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelNbPlace)
-                    .addComponent(jTextFieldNbPlace, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabelLaRepresentation2, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
+                .addComponent(jLabelLaRepresentation3, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
+                .addGap(73, 73, 73)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelNbPlace, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldNbPlace, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonValider)
-                    .addComponent(jButtonAnnuler))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButtonAnnuler)
+                    .addComponent(jButtonValider))
+                .addGap(154, 154, 154))
         );
 
         pack();
@@ -160,20 +155,23 @@ public class VueVenteDePlaces extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VueVenteDePlaces.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VueVente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VueVenteDePlaces.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VueVente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VueVenteDePlaces.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VueVente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VueVenteDePlaces.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VueVente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display thjLabelLaRepresentation*/
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VueVenteDePlaces().setVisible(true);
+                new VueVente().setVisible(true);
             }
         });
     }
@@ -181,14 +179,27 @@ public class VueVenteDePlaces extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAnnuler;
     private javax.swing.JButton jButtonValider;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabelLaRepresentation;
+    private javax.swing.JLabel jLabelLaRepresentation2;
+    private javax.swing.JLabel jLabelLaRepresentation3;
     private javax.swing.JLabel jLabelNbPlace;
     private javax.swing.JLabel jLabelVenteDePlaces;
-    private javax.swing.JPanel jPanelVenteDePlaces;
     private javax.swing.JTextField jTextFieldNbPlace;
     // End of variables declaration//GEN-END:variables
 
+    
+    public JLabel getjLabelLaRepresentation(){
+        return jLabelLaRepresentation;
+    }
+    
+    public JLabel getjLabelLaRepresentation2(){
+        return jLabelLaRepresentation2;
+    }
+    
+    public JLabel getjLabelLaRepresentation3(){
+        return jLabelLaRepresentation3;
+    }
+    
     public JButton getjButtonAnnuler() {
         return jButtonAnnuler;
     }
@@ -196,4 +207,13 @@ public class VueVenteDePlaces extends javax.swing.JFrame {
     public void setjButtonAnnuler(JButton jButtonAnnuler) {
         this.jButtonAnnuler = jButtonAnnuler;
     }
+
+    public JButton getjButtonValider() {
+        return jButtonValider;
+    }
+
+    public void setjButtonValider(JButton jButtonValider) {
+        this.jButtonValider = jButtonValider;
+    }
+    
 }
