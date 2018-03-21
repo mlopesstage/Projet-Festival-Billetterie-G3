@@ -207,7 +207,8 @@ CREATE TABLE `Representation` (
   `idGroupe` char(4) COLLATE utf8_bin NOT NULL,
   `dateRep` date NOT NULL,
   `heureDebut` time NOT NULL,
-  `heureFin` time NOT NULL
+  `heureFin` time NOT NULL,
+  `nbPlacesVendues` int NOT NULL DEFAULT (0)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
