@@ -23,6 +23,10 @@ public class TestDaoRepresentation {
             System.out.println("Test1 effectué : sélection unique\n");
             test2_SelectMultiple();
             System.out.println("Test2 effectué : sélection multiple\n");
+            test1_SelectUnique(3);
+            test3_VendreRepresentation(3,5);
+            test1_SelectUnique(3);
+            System.out.println("Test3 effectué : vente de places\n");
         } catch (ClassNotFoundException e) {
             System.err.println("Erreur de pilote JDBC : " + e);
         } catch (SQLException e) {
@@ -68,5 +72,14 @@ public class TestDaoRepresentation {
     public static void test2_SelectMultiple() throws SQLException {
         List<Representation> desRepresentations = DaoRepresentation.selectAll();
         System.out.println("Les representations lues : "+desRepresentations.toString());
+    }
+    
+    /**
+     * Vend un certain nombre de places 
+     * @throws SQLException
+     */
+    public static void test3_VendreRepresentation(int idRepresentation,int nbPlacesVendues) throws SQLException {
+        int placesVendues = DaoRepresentation.vendreRepresentation(idRepresentation, nbPlacesVendues);
+        System.out.println("Representation d'identifiant : "+ idRepresentation +" \nNombre de places vendue(s): "+ nbPlacesVendues);
     }
 }

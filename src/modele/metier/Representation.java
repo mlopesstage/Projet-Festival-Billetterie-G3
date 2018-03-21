@@ -97,7 +97,7 @@ public class Representation {
 
     @Override
     public String toString() {
-        return "Representation_1{" + "id=" + id + ", lieu=" + lieu + ", groupe=" + groupe + ", dateRep=" + dateRep + ", heureDebut=" + heureDebut + ", heureFin=" + heureFin + '}';
+        return "Representation_1{" + "id=" + id + ", lieu=" + lieu + ", groupe=" + groupe + ", dateRep=" + dateRep + ", heureDebut=" + heureDebut + ", heureFin=" + heureFin + ", nbPlacesVendues=" + nbPlacesVendues + '}';
     }
     
    

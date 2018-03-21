@@ -76,6 +76,7 @@ public class DaoRepresentation {
         Date date= rs.getDate("dateRep");
         Time heureD = rs.getTime("heureDebut");
         Time heureF = rs.getTime("heureFin");
+        int nbPlacesVendues = rs.getInt("nbPlacesVendues");
 
         LocalTime heureDebut = LocalTime.of(heureD.getHours(),heureD.getMinutes(), heureD.getSeconds(),0);
         LocalTime heureFin = LocalTime.of(heureF.getHours(),heureF.getMinutes(), heureF.getSeconds(),0);
@@ -83,7 +84,7 @@ public class DaoRepresentation {
         Lieu lieu = DaoLieu.selectOne(idLieu);
         Groupe groupe = DaoGroupe.selectOne(idGroupe);
         
-        rp = new Representation(id, lieu, groupe, dateRep,heureDebut,heureFin,0);
+        rp = new Representation(id, lieu, groupe, dateRep,heureDebut,heureFin,nbPlacesVendues);
         
         return rp;
     }
