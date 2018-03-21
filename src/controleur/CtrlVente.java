@@ -35,6 +35,7 @@ public class CtrlVente implements WindowListener, ActionListener {
         // le contrôleur écoute la vue
         this.vue.addWindowListener((WindowListener) this);
         this.vue.getjButtonAnnuler().addActionListener(this);
+        this.vue.getjButtonValider().addActionListener(this);
         this.ctrlPrincipal = ctrl;
     }
 
@@ -69,18 +70,29 @@ public class CtrlVente implements WindowListener, ActionListener {
         if (e.getSource().equals(vue.getjButtonAnnuler())) {
             ctrlPrincipal.afficherLesRepresentations();
         }else if (e.getSource().equals(vue.getjButtonValider())){
-            vendreDesPlaces(ctrlPrincipal.getIdRep());
+            Representation laRepresentation = null;
+            try {
+                laRepresentation = DaoRepresentation.selectOne(ctrlPrincipal.getIdRep());
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(getVue(), "CtrlLesRepresentations - échec de sélection de la representation");
+            }
+            int nbPlacesVendues = Integer.parseInt(vue.getjTextFieldNbPlace().getText());
+            vendreDesPlaces(ctrlPrincipal.getIdRep(),laRepresentation.getNbPlacesVendues() + nbPlacesVendues);
+            afficherLaRepresentation(ctrlPrincipal.getIdRep());
         }
     }
 
-    public void vendreDesPlaces(int idRep){
+    public void vendreDesPlaces(int idRep,int nbPlacesVendues){
         Representation laRepresentation = null;
         Lieu leLieu = null;
-        Groupe leGroupe = null;
         try {
             laRepresentation = DaoRepresentation.selectOne(idRep);
             leLieu = laRepresentation.getLieu();
-            leGroupe = laRepresentation.getGroupe();
+            if((leLieu.getCapacite() - laRepresentation.getNbPlacesVendues()) < nbPlacesVendues){
+                JOptionPane.showMessageDialog(getVue(), "CtrlLesRepresentations - Il n'y a pas assez de places disponibles");
+            }else{
+                DaoRepresentation.vendreRepresentation(idRep,nbPlacesVendues);
+            }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(getVue(), "CtrlLesRepresentations - échec de sélection de la representation");
         }
@@ -95,7 +107,6 @@ public class CtrlVente implements WindowListener, ActionListener {
 
     @Override
     public void windowOpened(WindowEvent e) {
-       afficherLaRepresentation(ctrlPrincipal.getIdRep());
     }
 
     @Override
@@ -120,7 +131,7 @@ public class CtrlVente implements WindowListener, ActionListener {
 
     @Override
     public void windowActivated(WindowEvent e) {
-        
+        afficherLaRepresentation(ctrlPrincipal.getIdRep());
     }
 
     @Override
