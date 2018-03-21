@@ -51,21 +51,21 @@ public class VueMenu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(170, 170, 170)
+                        .addGap(161, 161, 161)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
+                        .addGap(69, 69, 69)
                         .addComponent(jButtonRepresentations)))
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
+                .addGap(22, 22, 22)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonRepresentations)
-                .addGap(18, 18, 18))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         pack();
@@ -74,7 +74,7 @@ public class VueMenu extends javax.swing.JFrame {
     private void jButtonRepresentationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRepresentationsActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonRepresentationsActionPerformed
-
+ 
     /**
      * @param args the command line arguments
      */
@@ -122,5 +122,5 @@ public class VueMenu extends javax.swing.JFrame {
     public void setjButtonRepresentations(JButton jButton1) {
         this.jButtonRepresentations = jButton1;
     }
- 
+     
 }
