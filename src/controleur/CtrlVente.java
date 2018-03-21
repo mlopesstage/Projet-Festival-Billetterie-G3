@@ -69,10 +69,23 @@ public class CtrlVente implements WindowListener, ActionListener {
         if (e.getSource().equals(vue.getjButtonAnnuler())) {
             ctrlPrincipal.afficherLesRepresentations();
         }else if (e.getSource().equals(vue.getjButtonValider())){
-            
+            vendreDesPlaces(ctrlPrincipal.getIdRep());
         }
     }
 
+    public void vendreDesPlaces(int idRep){
+        Representation laRepresentation = null;
+        Lieu leLieu = null;
+        Groupe leGroupe = null;
+        try {
+            laRepresentation = DaoRepresentation.selectOne(idRep);
+            leLieu = laRepresentation.getLieu();
+            leGroupe = laRepresentation.getGroupe();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(getVue(), "CtrlLesRepresentations - échec de sélection de la representation");
+        }
+    }
+    
     public void mouseClicked(MouseEvent e) {
         if (e.getClickCount() == 1) {
             //Si nb place vide alors erreur
@@ -114,4 +127,5 @@ public class CtrlVente implements WindowListener, ActionListener {
     public void windowDeactivated(WindowEvent e) {
         
     }
+    
 }

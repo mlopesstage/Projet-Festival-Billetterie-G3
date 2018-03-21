@@ -87,6 +87,19 @@ public class DaoRepresentation {
         
         return rp;
     }
+    public static int vendreRepresentation(int idRepresentation,int nbPlacesVendues) throws SQLException {
+        int nb;
+        Jdbc jdbc = Jdbc.getInstance();
+        String requete;
+        ResultSet rs;
+        PreparedStatement pstmt;
+        requete = "UPDATE Representation SET nbPlacesVendues = ? WHERE ID = ?";
+        pstmt = jdbc.getConnexion().prepareStatement(requete);
+        pstmt.setInt(1, nbPlacesVendues);
+        pstmt.setInt(2, idRepresentation);
+        nb = pstmt.executeUpdate();
+        return nb;
+    }
         /**
      * Extraction de toutes les representations dont le nom de ville contient la chaîne recherchée
      * @param extraitNomVille
@@ -171,21 +184,6 @@ public class DaoRepresentation {
         pstmt.setString(2, uneRepresentation.getRue());
         pstmt.setString(3, uneRepresentation.getCp());
         pstmt.setString(4, uneRepresentation.getVille());
-        nb = pstmt.executeUpdate();
-        return nb;
-    }
-    public static int update(int idRepresentation, Representation uneRepresentation) throws SQLException {
-        int nb;
-        Jdbc jdbc = Jdbc.getInstance();
-        String requete;
-        ResultSet rs;
-        PreparedStatement pstmt;
-        requete = "UPDATE Representation SET RUE = ? , CDP = ? , VILLE = ? WHERE ID = ?";
-        pstmt = jdbc.getConnexion().prepareStatement(requete);
-        pstmt.setString(1, uneRepresentation.getRue());
-        pstmt.setString(2, uneRepresentation.getCp());
-        pstmt.setString(3, uneRepresentation.getVille());
-        pstmt.setInt(4, idRepresentation);
         nb = pstmt.executeUpdate();
         return nb;
     }
