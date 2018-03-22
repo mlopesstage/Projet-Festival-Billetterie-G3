@@ -1,5 +1,7 @@
 package Main;
 
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -36,7 +38,9 @@ public class Main {
                        
         try {
           
-            input = new FileInputStream("src/domaine/properties/config.properties");
+            //input = new FileInputStream("src/config.properties");
+            input = Main.class.getResourceAsStream( "config.properties" );
+
 
             // load a properties file
             prop.load(input);
@@ -48,6 +52,7 @@ public class Main {
             String base = prop.getProperty("base");
             String login = prop.getProperty("login");
             String mdp = prop.getProperty("mdp");
+            System.out.println("Test" + mdp);
             Jdbc.creer(pilote, protocole, serveur, base, login, mdp);
             try {
                 Jdbc.getInstance().connecter();
