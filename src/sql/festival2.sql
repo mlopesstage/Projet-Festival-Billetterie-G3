@@ -20,8 +20,8 @@ SET time_zone = "+00:00";
 -- Base de données :  `festival2`
 --
 
-CREATE USER IF NOT EXISTS 'festival2_g3_util'@'localhost' IDENTIFIED BY 'f2_g3_mdp';
-GRANT ALL PRIVILEGES ON festival2.* TO 'festival2_g3_util'@'localhost';
+CREATE USER IF NOT EXISTS 'festival2_g3_ut'@'localhost' IDENTIFIED BY 'f2_g3_mdp';
+GRANT ALL PRIVILEGES ON festival2.* TO 'festival2_g3_ut'@'localhost';
 
 -- --------------------------------------------------------
 
@@ -211,7 +211,7 @@ CREATE TABLE `Representation` (
   `dateRep` date NOT NULL,
   `heureDebut` time NOT NULL,
   `heureFin` time NOT NULL,
-  `nbPlacesVendues` int NOT NULL DEFAULT (0)
+  `nbPlacesVendues` int NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
