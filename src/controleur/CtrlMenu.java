@@ -26,6 +26,7 @@ public class CtrlMenu implements WindowListener, ActionListener {
         this.vue = vue;
         this.vue.addWindowListener(this);
         vue.getjButtonRepresentations().addActionListener(this);
+        vue.getjButtonConnexion().addActionListener(this);
         this.ctrlPrincipal = ctrl;
     }
     
@@ -80,6 +81,8 @@ public class CtrlMenu implements WindowListener, ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(vue.getjButtonRepresentations())) {
             ctrlPrincipal.afficherLesRepresentations();
+        } else if (e.getSource().equals(vue.getjButtonConnexion())) {
+            ctrlPrincipal.afficherConnexion();
         }
     }
     
