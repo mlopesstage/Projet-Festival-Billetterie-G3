@@ -48,7 +48,6 @@ public class Main {
             String base = prop.getProperty("base");
             String login = prop.getProperty("login");
             String mdp = prop.getProperty("mdp");
-            System.out.println("Test" + mdp);
             Jdbc.creer(pilote, protocole, serveur, base, login, mdp);
             try {
                 Jdbc.getInstance().connecter();
