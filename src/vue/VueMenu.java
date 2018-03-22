@@ -6,6 +6,7 @@
 package vue;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 
 /**
  *
@@ -32,6 +33,7 @@ public class VueMenu extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButtonRepresentations = new javax.swing.JButton();
         jButtonConnexion = new javax.swing.JButton();
+        jLabelUtilisateur = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,14 +54,18 @@ public class VueMenu extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(69, 69, 69)
-                .addComponent(jButtonRepresentations)
-                .addContainerGap(70, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(161, 161, 161)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addComponent(jButtonConnexion))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(69, 69, 69)
+                .addComponent(jButtonRepresentations)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelUtilisateur, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -71,7 +77,9 @@ public class VueMenu extends javax.swing.JFrame {
                     .addComponent(jButtonConnexion))
                 .addGap(18, 18, 18)
                 .addComponent(jButtonRepresentations)
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addComponent(jLabelUtilisateur)
+                .addContainerGap())
         );
 
         pack();
@@ -120,6 +128,7 @@ public class VueMenu extends javax.swing.JFrame {
     private javax.swing.JButton jButtonConnexion;
     private javax.swing.JButton jButtonRepresentations;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabelUtilisateur;
     // End of variables declaration//GEN-END:variables
 
     public JButton getjButtonRepresentations() {
@@ -136,6 +145,14 @@ public class VueMenu extends javax.swing.JFrame {
 
     public void setjButtonConnexion(JButton jButtonConnexion) {
         this.jButtonConnexion = jButtonConnexion;
+    }
+
+    public JLabel getjLabelUtilisateur() {
+        return jLabelUtilisateur;
+    }
+
+    public void setjLabelUtilisateur(JLabel jLabelUtilisateur) {
+        this.jLabelUtilisateur = jLabelUtilisateur;
     }
     
     

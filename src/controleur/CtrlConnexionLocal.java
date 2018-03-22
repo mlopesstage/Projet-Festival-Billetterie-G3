@@ -13,18 +13,23 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.Key;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import static jdk.nashorn.tools.ShellFunctions.input;
+import chiffrage.Encryptage;
 
 /**
  *
  * @author btssio
  */
 public class CtrlConnexionLocal implements WindowListener, ActionListener {
+    
     
     VueConnexionLocal vue = new VueConnexionLocal();
     private CtrlPrincipal ctrlPrincipal;
@@ -105,12 +110,18 @@ public class CtrlConnexionLocal implements WindowListener, ActionListener {
         } else if (e.getSource().equals(vue.getjButtonValider())) {
             String util = vue.getjTextFieldUtil().getText();
             String mdp = vue.getjTextFieldMdp().getText();
+            util = Encryptage.encrypt(util, "b");
+            mdp = Encryptage.encrypt(mdp, "f");
             try {
                 input = new FileInputStream("src/domaine/properties/util.properties");
                 prop.load(input);
                 
                 if (util.equals(prop.getProperty("util1")) && mdp.equals(prop.getProperty("mdp1"))) {
+                    
                     vue.getjLabelConnexionReussie().setText("Connexion réussie");
+                    util = vue.getjTextFieldUtil().getText();
+                    ctrlPrincipal.setConnecter(util);
+                    ctrlPrincipal.afficherLeMenu();
                 } else {
                     vue.getjLabelConnexionReussie().setText("Utilisateur ou mot de passe incorrect");
                 }

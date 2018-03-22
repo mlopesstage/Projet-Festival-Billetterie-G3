@@ -13,6 +13,7 @@ public class CtrlPrincipal {
     private CtrlVente ctrlVente;
     private CtrlConnexionLocal ctrlConnexionLocal;
     private int idRep;
+    private String connecter = null;
     
     public void afficherLeMenu() {
         this.ctrlLesRepresentations.getVue().setVisible(false);
@@ -93,5 +94,15 @@ public class CtrlPrincipal {
     public void setCtrlConnexionLocal(CtrlConnexionLocal ctrlConnexionLocal) {
         this.ctrlConnexionLocal = ctrlConnexionLocal;
     }
+
+    public String getConnecter() {
+        return connecter;
+    }
+
+    public void setConnecter(String connecter) {
+        this.connecter = connecter;
+    }
+    
+    
     
 }

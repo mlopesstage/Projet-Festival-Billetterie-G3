@@ -71,6 +71,11 @@ public class CtrlMenu implements WindowListener, ActionListener {
 
     @Override
     public void windowActivated(WindowEvent e) {
+        if (ctrlPrincipal.getConnecter() == null) {
+            
+        } else {
+            vue.getjLabelUtilisateur().setText("Connecté en tant que : " + ctrlPrincipal.getConnecter());
+        }     
     }
 
     @Override

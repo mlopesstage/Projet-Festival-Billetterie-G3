@@ -11,8 +11,11 @@ import controleur.*;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.Key;
 import java.sql.SQLException;
 import java.util.Properties;
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,16 +23,17 @@ import javax.swing.JOptionPane;
  * @author ychantreau
  */
 public class Main {
+    
 
     /**
      * @param args the command line arguments
      */
 
-    public static void main(String[] args) {
+    public static void main(String[] args) {        
 //        Jdbc.creer("oracle.jdbc.driver.OracleDriver", "jdbc:oracle:thin:", "@localhost:1521:XE", "", "btssio", "btssio");
         final Properties prop = new Properties();
 	InputStream input = null;
-        
+                       
         try {
           
             input = new FileInputStream("src/domaine/properties/config.properties");
