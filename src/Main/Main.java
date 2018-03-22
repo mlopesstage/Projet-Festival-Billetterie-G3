@@ -54,7 +54,10 @@ public class Main {
                 CtrlLesRepresentations ctrlLesRepresentations = new CtrlLesRepresentations(vueRepresentation, leControleurPrincipal);
                 VueVente laVente = new VueVente();
                 CtrlVente ctrlLaVente = new CtrlVente(laVente, leControleurPrincipal);
+                VueConnexion laConnexion = new VueConnexion();
+                CtrlConnexion ctrlLaConnexion = new CtrlConnexion(laConnexion, leControleurPrincipal);
                 leControleurPrincipal.setCtrlMenu(ctrlLeMenu);
+                leControleurPrincipal.setCtrlConnexion(ctrlLaConnexion);
                 leControleurPrincipal.setCtrlLesRepresentations(ctrlLesRepresentations);
                 leControleurPrincipal.setCtrlVente(ctrlLaVente);
                 leMenu.setVisible(true);

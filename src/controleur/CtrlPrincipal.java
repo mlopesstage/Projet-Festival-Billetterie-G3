@@ -11,25 +11,36 @@ public class CtrlPrincipal {
     private CtrlLesRepresentations ctrlLesRepresentations;
     private CtrlMenu ctrlMenu;
     private CtrlVente ctrlVente;
+    private CtrlConnexion ctrlConnexion;
     private int idRep;
     
     public void afficherLeMenu() {
         this.ctrlLesRepresentations.getVue().setVisible(false);
         this.ctrlVente.getVue().setVisible(false);
         this.ctrlMenu.getVue().setVisible(true);
+        this.ctrlConnexion.getVue().setVisible(false);
     }
     
     public void afficherLesRepresentations() {
         this.ctrlLesRepresentations.getVue().setVisible(true);
         this.ctrlVente.getVue().setVisible(false);
         this.ctrlMenu.getVue().setVisible(false);
+        this.ctrlConnexion.getVue().setVisible(false);
     }
     
     public void afficherVente(int idRep) {
         this.ctrlLesRepresentations.getVue().setVisible(false);
         this.ctrlVente.getVue().setVisible(true);
         this.ctrlMenu.getVue().setVisible(false);
+        this.ctrlConnexion.getVue().setVisible(false);
         this.idRep = idRep;
+    }
+    
+    public void afficherConnexion() {
+        this.ctrlLesRepresentations.getVue().setVisible(false);
+        this.ctrlVente.getVue().setVisible(false);
+        this.ctrlMenu.getVue().setVisible(false);
+        this.ctrlConnexion.getVue().setVisible(true);
     }
     
     public void quitter() {
@@ -73,6 +84,14 @@ public class CtrlPrincipal {
 
     public void setCtrlVente(CtrlVente ctrlVente) {
         this.ctrlVente = ctrlVente;
+    }
+
+    public CtrlConnexion getCtrlConnexion() {
+        return ctrlConnexion;
+    }
+
+    public void setCtrlConnexion(CtrlConnexion ctrlConnexion) {
+        this.ctrlConnexion = ctrlConnexion;
     }
     
 }
