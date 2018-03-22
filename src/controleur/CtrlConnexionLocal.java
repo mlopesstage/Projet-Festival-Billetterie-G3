@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package controleur;
-import vue.VueConnexion;
+import vue.VueConnexionLocal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -24,12 +24,12 @@ import static jdk.nashorn.tools.ShellFunctions.input;
  *
  * @author btssio
  */
-public class CtrlConnexion implements WindowListener, ActionListener {
+public class CtrlConnexionLocal implements WindowListener, ActionListener {
     
-    VueConnexion vue = new VueConnexion();
+    VueConnexionLocal vue = new VueConnexionLocal();
     private CtrlPrincipal ctrlPrincipal;
     
-    public CtrlConnexion(VueConnexion vue,CtrlPrincipal ctrl) {
+    public CtrlConnexionLocal(VueConnexionLocal vue,CtrlPrincipal ctrl) {
         this.vue = vue;
         this.vue.addWindowListener(this);
         vue.getjTextFieldUtil().addActionListener(this);
@@ -54,11 +54,11 @@ public class CtrlConnexion implements WindowListener, ActionListener {
         }
     }
 
-    public VueConnexion getVue() {
+    public VueConnexionLocal getVue() {
         return vue;
     }
 
-    public void setVue(VueConnexion vue) {
+    public void setVue(VueConnexionLocal vue) {
         this.vue = vue;
     }
     
