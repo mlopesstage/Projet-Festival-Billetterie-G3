@@ -109,7 +109,7 @@ public class CtrlConnexion implements WindowListener, ActionListener {
                 input = new FileInputStream("src/domaine/properties/util.properties");
                 prop.load(input);
                 
-                if (util == prop.getProperty("util1") && mdp == prop.getProperty("mdp1")) {
+                if (util.equals(prop.getProperty("util1")) && mdp.equals(prop.getProperty("mdp1"))) {
                     vue.getjLabelConnexionReussie().setText("Connexion réussie");
                 } else {
                     vue.getjLabelConnexionReussie().setText("Utilisateur ou mot de passe incorrect");
