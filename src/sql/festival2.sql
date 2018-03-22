@@ -20,6 +20,9 @@ SET time_zone = "+00:00";
 -- Base de données :  `festival2`
 --
 
+CREATE USER IF NOT EXISTS 'festival2_g3_util'@'localhost' IDENTIFIED BY 'f2_g3_mdp';
+GRANT ALL PRIVILEGES ON festival2.* TO 'festival2_g3_util'@'localhost';
+
 -- --------------------------------------------------------
 
 --
