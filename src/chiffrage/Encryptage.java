@@ -15,6 +15,11 @@ import javax.crypto.spec.SecretKeySpec;
  */
 public class Encryptage {
     
+    public static void main(String[] args) {
+        String code = encrypt("joliverie", "b");
+        System.out.println(code);
+    } 
+    
         public static String encrypt(String password,String key){
         
         try {
