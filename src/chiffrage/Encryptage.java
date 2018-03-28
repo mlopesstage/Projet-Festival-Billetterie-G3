@@ -20,7 +20,7 @@ public class Encryptage {
         System.out.println(code);
     } 
     
-        public static String encrypt(String password,String key){
+    public static String encrypt(String password,String key){
         
         try {
             Key clef = new SecretKeySpec(key.getBytes("UTF-8"),"Blowfish");
