@@ -15,6 +15,8 @@ import javax.swing.JTextField;
  * @author btssio
  */
 public class VueConnexionLocal extends javax.swing.JFrame {
+    
+    boolean entree = false;
 
     /**
      * Creates new form VueConnexion
@@ -51,6 +53,12 @@ public class VueConnexionLocal extends javax.swing.JFrame {
         jLabel3.setText("Mot de passe :");
 
         jButtonRetour.setText("Retour");
+        jButtonRetour.setMargin(new java.awt.Insets(2, 17, 2, 17));
+        jButtonRetour.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRetourActionPerformed(evt);
+            }
+        });
 
         jButtonValider.setText("Connexion");
         jButtonValider.addActionListener(new java.awt.event.ActionListener() {
@@ -59,6 +67,9 @@ public class VueConnexionLocal extends javax.swing.JFrame {
             }
         });
 
+        jLabelConnexionReussie.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelConnexionReussie.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -66,12 +77,11 @@ public class VueConnexionLocal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButtonRetour)
-                        .addGap(156, 156, 156))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButtonValider)
-                        .addGap(143, 143, 143))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jButtonRetour))
+                    .addComponent(jButtonValider))
+                .addGap(143, 143, 143))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -87,8 +97,8 @@ public class VueConnexionLocal extends javax.swing.JFrame {
                         .addGap(117, 117, 117)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(jLabelConnexionReussie, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(33, 33, 33)
+                        .addComponent(jLabelConnexionReussie, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -104,11 +114,11 @@ public class VueConnexionLocal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jTextFieldMdp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addComponent(jLabelConnexionReussie, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonValider)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(jLabelConnexionReussie, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jButtonValider)
+                .addGap(9, 9, 9)
                 .addComponent(jButtonRetour)
                 .addContainerGap())
         );
@@ -119,6 +129,10 @@ public class VueConnexionLocal extends javax.swing.JFrame {
     private void jButtonValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonValiderActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonValiderActionPerformed
+
+    private void jButtonRetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetourActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonRetourActionPerformed
 
     /**
      * @param args the command line arguments
@@ -169,7 +183,7 @@ public class VueConnexionLocal extends javax.swing.JFrame {
 
     
     
-
+    
     public JButton getjButtonRetour() {
         return jButtonRetour;
     }

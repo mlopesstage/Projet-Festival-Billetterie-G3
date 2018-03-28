@@ -13,16 +13,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.security.Key;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.crypto.Cipher;
-import javax.crypto.spec.SecretKeySpec;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import static jdk.nashorn.tools.ShellFunctions.input;
 import chiffrage.Encryptage;
+import com.sun.java.accessibility.util.AWTEventMonitor;
+
 
 /**
  *
@@ -35,6 +30,8 @@ public class CtrlConnexionLocal implements WindowListener, ActionListener {
     private CtrlPrincipal ctrlPrincipal;
     
     public CtrlConnexionLocal(VueConnexionLocal vue,CtrlPrincipal ctrl) {
+        
+        
         this.vue = vue;
         this.vue.addWindowListener(this);
         vue.getjTextFieldUtil().addActionListener(this);
@@ -94,20 +91,25 @@ public class CtrlConnexionLocal implements WindowListener, ActionListener {
     }
 
     @Override
-    public void windowActivated(WindowEvent e) {
-        
+    public void windowActivated(WindowEvent e) {              
+        vue.getjTextFieldUtil().setText("");
+        vue.getjTextFieldMdp().setText("");
+        vue.getjLabelConnexionReussie().setText("");
+             
     }
 
     @Override
     public void windowDeactivated(WindowEvent e) {
-        
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(vue.getjButtonRetour())) {
             ctrlPrincipal.afficherLeMenu();
-        } else if (e.getSource().equals(vue.getjButtonValider())) {
+        } else 
+            if (e.getSource().equals(vue.getjButtonValider()) 
+            || e.getSource().equals(vue.getjTextFieldUtil())
+            || e.getSource().equals(vue.getjTextFieldMdp())) {
             String util = vue.getjTextFieldUtil().getText();
             String mdp = vue.getjTextFieldMdp().getText();
             util = Encryptage.encrypt(util, "b");
@@ -118,7 +120,7 @@ public class CtrlConnexionLocal implements WindowListener, ActionListener {
                 
                 if (util.equals(prop.getProperty("util1")) && mdp.equals(prop.getProperty("mdp1"))) {
                     
-                    vue.getjLabelConnexionReussie().setText("Connexion réussie");
+                    vue.getjLabelConnexionReussie().setText("Connexion réussie");                 
                     util = vue.getjTextFieldUtil().getText();
                     ctrlPrincipal.setConnecter(util);
                     ctrlPrincipal.afficherLeMenu();
