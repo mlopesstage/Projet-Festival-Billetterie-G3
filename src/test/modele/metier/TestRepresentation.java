@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package test.modele.metier;
 
 import java.time.LocalDate;
@@ -11,10 +6,6 @@ import modele.metier.Groupe;
 import modele.metier.Lieu;
 import modele.metier.Representation;
 
-/**
- *
- * @author ychantreau
- */
 public class TestRepresentation {
         public static void main(String[] args) {
         Representation rp;

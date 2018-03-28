@@ -1,17 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package vue;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
-/**
- *
- * @author btssio
- */
 public class VueMenu extends javax.swing.JFrame {
 
     /**
@@ -154,7 +145,4 @@ public class VueMenu extends javax.swing.JFrame {
     public void setjLabelUtilisateur(JLabel jLabelUtilisateur) {
         this.jLabelUtilisateur = jLabelUtilisateur;
     }
-    
-    
-     
 }

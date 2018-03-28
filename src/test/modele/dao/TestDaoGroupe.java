@@ -6,10 +6,6 @@ import modele.dao.DaoGroupe;
 import modele.dao.Jdbc;
 import modele.metier.Groupe;
 
-/**
- *
- * @author btssio
- */
 public class TestDaoGroupe {
 
     public static void main(String[] args) {
@@ -36,7 +32,6 @@ public class TestDaoGroupe {
                 System.err.println("Erreur de fermeture de la connexion JDBC : " + e);
             }
         }
-
     }
 
     /**

@@ -9,18 +9,11 @@ import modele.dao.DaoRepresentation;
 import modele.metier.Representation;
 import vue.VueMenu;
 import vue.VueRepresentation;
-/**
- *
- * @author mlopes
- */
-
 
 public class CtrlMenu implements WindowListener, ActionListener {
     
     VueMenu vue = new VueMenu();
     private CtrlPrincipal ctrlPrincipal;
-
-
     
     public CtrlMenu(VueMenu vue,CtrlPrincipal ctrl) {
         this.vue = vue;
@@ -91,5 +84,4 @@ public class CtrlMenu implements WindowListener, ActionListener {
             ctrlPrincipal.afficherConnexion();
         }
     }
-    
 }

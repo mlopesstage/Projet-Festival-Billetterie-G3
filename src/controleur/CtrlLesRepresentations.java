@@ -23,10 +23,6 @@ import modele.metier.Representation;
 import vue.VueMenu;
 import vue.VueRepresentation;
 
-/**
- * @author ychantreau
- *
- */
 public class CtrlLesRepresentations implements WindowListener, ActionListener, MouseListener {
 
     VueRepresentation vue; // LA VUE
@@ -54,7 +50,7 @@ public class CtrlLesRepresentations implements WindowListener, ActionListener, M
         try {
             lesRepresentations = DaoRepresentation.selectAll();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(getVue(), "CtrlLesRepresentations - échec de sélection des representations");
+            JOptionPane.showMessageDialog(getVue(), "Échec de sélection des representations");
         }
         afficherLesRepresentations(lesRepresentations);
     }
@@ -81,7 +77,6 @@ public class CtrlLesRepresentations implements WindowListener, ActionListener, M
         }
     }
    
-
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(vue.getjButtonAnnuler())) {
@@ -107,7 +102,6 @@ public class CtrlLesRepresentations implements WindowListener, ActionListener, M
             LocalTime now = LocalTime.now();
             debut = debut.plus(30, ChronoUnit.MINUTES);
             LocalDate date = LocalDate.now();
-
 
             //if (date.isAfter(dateRep)) {
             if (now.isBefore(fin) && now.isAfter(debut)) {
@@ -213,5 +207,4 @@ public class CtrlLesRepresentations implements WindowListener, ActionListener, M
     public void mouseExited(MouseEvent e) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
 }

@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- **/
 package modele.metier;
 
-/**
- *
- * @author ychantreau
- **/
 public class Lieu {  
     
     private int id;
@@ -62,5 +53,4 @@ public class Lieu {
     public String toString() {
         return "Lieu{" + "id=" + id + ", nom=" + nom + ", adr=" + adr + ", capacite=" + capacite + '}';
     }
-    
 }
