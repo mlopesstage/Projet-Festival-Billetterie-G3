@@ -15,7 +15,12 @@ import javax.crypto.spec.SecretKeySpec;
  */
 public class Encryptage {
     
-        public static String encrypt(String password,String key){
+    public static void main(String[] args) {
+        String code = encrypt("joliverie", "b");
+        System.out.println(code);
+    } 
+    
+    public static String encrypt(String password,String key){
         
         try {
             Key clef = new SecretKeySpec(key.getBytes("UTF-8"),"Blowfish");
