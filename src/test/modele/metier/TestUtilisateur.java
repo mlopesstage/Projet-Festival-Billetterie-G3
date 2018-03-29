@@ -8,9 +8,9 @@ import modele.metier.Utilisateur;
 public class TestUtilisateur {
 
     public static void main(String[] args) {
-        Utilisateur grp;
+        Utilisateur util;
         System.out.println("\nTest n°1 : instanciation et accesseurs");
-        grp = new Utilisateur(3, "loginUtil","passwordUtil", "nomUtil", "prenomUtil");
-        System.out.println(grp);
+        util = new Utilisateur(3, "loginUtil","passwordUtil", "nomUtil", "prenomUtil");
+        System.out.println(util);
     }
 }

@@ -62,6 +62,6 @@ public class TestDaoUtilisateur {
      */
     public static void test2_SelectMultiple() throws SQLException {
         List<Utilisateur> desUtilisateurs = DaoUtilisateur.selectAll();
-        System.out.println("Les groupes lus : "+desUtilisateurs.toString());
+        System.out.println("Les utilisateurs lus : "+desUtilisateurs.toString());
     }
 }
