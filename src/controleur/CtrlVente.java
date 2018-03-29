@@ -67,7 +67,11 @@ public class CtrlVente implements WindowListener, ActionListener {
                 JOptionPane.showMessageDialog(getVue(), "Échec de sélection de la representation");
             }
             int nbPlacesVendues = Integer.parseInt(vue.getjTextFieldNbPlace().getText());
-            vendreDesPlaces(ctrlPrincipal.getIdRep(),laRepresentation.getNbPlacesVendues() + nbPlacesVendues);
+            if (nbPlacesVendues <= 0){
+                JOptionPane.showMessageDialog(getVue(),"Vous devez saisir un nombre positif, autre que 0");
+            }else{
+                vendreDesPlaces(ctrlPrincipal.getIdRep(),nbPlacesVendues);
+            }
             afficherLaRepresentation(ctrlPrincipal.getIdRep());
         }
     }
@@ -81,7 +85,7 @@ public class CtrlVente implements WindowListener, ActionListener {
             if((leLieu.getCapacite() - laRepresentation.getNbPlacesVendues()) < nbPlacesVendues){
                 JOptionPane.showMessageDialog(getVue(), "Il n'y a pas assez de places disponibles");
             }else{
-                DaoRepresentation.vendreRepresentation(idRep,nbPlacesVendues);
+                DaoRepresentation.vendreRepresentation(idRep,laRepresentation.getNbPlacesVendues() +nbPlacesVendues);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(getVue(), "Échec de sélection de la representation");
