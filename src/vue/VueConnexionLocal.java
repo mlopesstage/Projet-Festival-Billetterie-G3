@@ -33,7 +33,7 @@ public class VueConnexionLocal extends javax.swing.JFrame {
         jButtonValider = new javax.swing.JButton();
         jLabelConnexionReussie = new javax.swing.JLabel();
         jTextFieldMdp = new javax.swing.JPasswordField();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        jCheckBoxConnexion = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,7 +63,7 @@ public class VueConnexionLocal extends javax.swing.JFrame {
         jLabelConnexionReussie.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelConnexionReussie.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jCheckBox1.setText("jCheckBox1");
+        jCheckBoxConnexion.setText("ConnexionLocal");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -83,7 +83,7 @@ public class VueConnexionLocal extends javax.swing.JFrame {
                                     .addComponent(jLabel2))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jCheckBox1)
+                                    .addComponent(jCheckBoxConnexion)
                                     .addComponent(jTextFieldUtil, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextFieldMdp, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jLabelConnexionReussie, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -109,7 +109,7 @@ public class VueConnexionLocal extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jTextFieldMdp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox1)
+                .addComponent(jCheckBoxConnexion)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelConnexionReussie, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -169,7 +169,7 @@ public class VueConnexionLocal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonRetour;
     private javax.swing.JButton jButtonValider;
-    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox jCheckBoxConnexion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
