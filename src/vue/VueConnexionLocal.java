@@ -1,6 +1,7 @@
 package vue;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -189,6 +190,8 @@ public class VueConnexionLocal extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldUtil;
     // End of variables declaration//GEN-END:variables
 
+    
+    
     public JButton getjButtonRetour() {
         return jButtonRetour;
     }
@@ -227,5 +230,13 @@ public class VueConnexionLocal extends javax.swing.JFrame {
 
     public void setjLabelConnexionReussie(JLabel jLabelConnexionReussie) {
         this.jLabelConnexionReussie = jLabelConnexionReussie;
+    }
+
+    public JCheckBox getjCheckBoxConnexion() {
+        return jCheckBoxConnexion;
+    }
+
+    public void setjCheckBoxConnexion(JCheckBox jCheckBoxConnexion) {
+        this.jCheckBoxConnexion = jCheckBoxConnexion;
     }
 }

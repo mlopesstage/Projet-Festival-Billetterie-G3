@@ -12,6 +12,8 @@ import java.io.InputStream;
 import java.util.Properties;
 import javax.swing.JOptionPane;
 import chiffrage.Encryptage;
+import modele.dao.DaoUtilisateur;
+import modele.metier.Utilisateur;
 
 public class CtrlConnexionLocal implements WindowListener, ActionListener {
     
@@ -98,21 +100,25 @@ public class CtrlConnexionLocal implements WindowListener, ActionListener {
             String mdp = vue.getjTextFieldMdp().getText();
             util = Encryptage.encrypt(util, "b");
             mdp = Encryptage.encrypt(mdp, "f");
-            try {
-                input = new FileInputStream("src/domaine/properties/util.properties");
-                prop.load(input);
-                
-                if (util.equals(prop.getProperty("util1")) && mdp.equals(prop.getProperty("mdp1"))) {
-                    
-                    vue.getjLabelConnexionReussie().setText("Connexion réussie");                 
-                    util = vue.getjTextFieldUtil().getText();
-                    ctrlPrincipal.setConnecter(util);
-                    ctrlPrincipal.afficherLeMenu();
-                } else {
-                    vue.getjLabelConnexionReussie().setText("Utilisateur ou mot de passe incorrect");
+            if (vue.getjCheckBoxConnexion().isSelected()){
+               //Utilisateur util = new Utilisateur;
+            }else{
+                try {
+                    input = new FileInputStream("src/domaine/properties/util.properties");
+                    prop.load(input);
+
+                    if (util.equals(prop.getProperty("util1")) && mdp.equals(prop.getProperty("mdp1"))) {
+
+                        vue.getjLabelConnexionReussie().setText("Connexion réussie");                 
+                        util = vue.getjTextFieldUtil().getText();
+                        ctrlPrincipal.setConnecter(util);
+                        ctrlPrincipal.afficherLeMenu();
+                    } else {
+                        vue.getjLabelConnexionReussie().setText("Utilisateur ou mot de passe incorrect");
+                    }
+                } catch (final IOException ex) {
+                    ex.printStackTrace();              
                 }
-            } catch (final IOException ex) {
-                ex.printStackTrace();              
             }
         }
     }
