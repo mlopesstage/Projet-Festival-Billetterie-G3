@@ -141,7 +141,7 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="jCheckBoxConnexion">
       <Properties>
-        <Property name="text" type="java.lang.String" value="ConnexionLocal"/>
+        <Property name="text" type="java.lang.String" value="ConnexionLocale"/>
       </Properties>
     </Component>
   </SubComponents>

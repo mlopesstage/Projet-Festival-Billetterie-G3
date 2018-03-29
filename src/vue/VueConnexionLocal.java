@@ -1,13 +1,12 @@
 package vue;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class VueConnexionLocal extends javax.swing.JFrame {
-    
-    boolean entree = false;
 
     /**
      * Creates new form VueConnexion
@@ -63,7 +62,7 @@ public class VueConnexionLocal extends javax.swing.JFrame {
         jLabelConnexionReussie.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelConnexionReussie.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jCheckBoxConnexion.setText("ConnexionLocal");
+        jCheckBoxConnexion.setText("ConnexionLocale");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -217,4 +216,14 @@ public class VueConnexionLocal extends javax.swing.JFrame {
     public void setjLabelConnexionReussie(JLabel jLabelConnexionReussie) {
         this.jLabelConnexionReussie = jLabelConnexionReussie;
     }
+
+    public JCheckBox getjCheckBoxConnexion() {
+        return jCheckBoxConnexion;
+    }
+
+    public void setjCheckBoxConnexion(JCheckBox jCheckBoxConnexion) {
+        this.jCheckBoxConnexion = jCheckBoxConnexion;
+    }
+    
+    
 }
