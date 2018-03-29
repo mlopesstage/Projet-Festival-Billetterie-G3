@@ -2,10 +2,10 @@
 -- version 4.5.4.1deb2ubuntu2
 -- http://www.phpmyadmin.net
 --
--- Client :  localhost
--- Généré le :  Jeu 23 Novembre 2017 à 15:34
--- Version du serveur :  5.7.19-0ubuntu0.16.04.1
--- Version de PHP :  7.0.22-0ubuntu0.16.04.1
+-- Host: localhost
+-- Generation Time: Mar 29, 2018 at 03:07 PM
+-- Server version: 5.7.21-0ubuntu0.16.04.1
+-- PHP Version: 7.0.28-0ubuntu0.16.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -16,38 +16,19 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
---
--- Base de données :  `festival2`
---
-
 CREATE USER IF NOT EXISTS 'festival2_g3_ut'@'localhost' IDENTIFIED BY 'f2_g3_mdp';
-GRANT ALL PRIVILEGES ON festival2.* TO 'festival2_g3_ut'@'localhost';
+GRANT ALL PRIVILEGES ON festival2.*TO 'festival2_g3_ut'@'localhost';
+
+--
+-- Database: `festival2`
+--
+CREATE DATABASE IF NOT EXISTS `festival2` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
+USE `festival2`;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Attribution`
---
-
-CREATE TABLE `Utilisateur` (
-  `id` int(11) NOT NULL,
-  `login` varchar(45) COLLATE utf8_bin NOT NULL,
-  `password` varchar(45) COLLATE utf8_bin NOT NULL,
-  `nom` varchar(45) COLLATE utf8_bin NOT NULL,
-  `prenom` varchar(45) COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- Contenu de la table `Attribution`
---
-
-INSERT INTO `Utilisateur` (`id`, `login`, `password`, `nom`,`prenom`) VALUES
-(1, '��Κ�ww�\u0010�\u000f��6\u0011�', 'B��\u0010z;��', 'joliverie','btssio');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `Attribution`
+-- Table structure for table `Attribution`
 --
 
 CREATE TABLE `Attribution` (
@@ -58,7 +39,7 @@ CREATE TABLE `Attribution` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Contenu de la table `Attribution`
+-- Dumping data for table `Attribution`
 --
 
 INSERT INTO `Attribution` (`idEtab`, `idTypeChambre`, `idGroupe`, `nombreChambres`) VALUES
@@ -78,7 +59,7 @@ INSERT INTO `Attribution` (`idEtab`, `idTypeChambre`, `idGroupe`, `nombreChambre
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Etablissement`
+-- Table structure for table `Etablissement`
 --
 
 CREATE TABLE `Etablissement` (
@@ -96,7 +77,7 @@ CREATE TABLE `Etablissement` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Contenu de la table `Etablissement`
+-- Dumping data for table `Etablissement`
 --
 
 INSERT INTO `Etablissement` (`id`, `nom`, `adresseRue`, `codePostal`, `ville`, `tel`, `adresseElectronique`, `type`, `civiliteResponsable`, `nomResponsable`, `prenomResponsable`) VALUES
@@ -107,7 +88,7 @@ INSERT INTO `Etablissement` (`id`, `nom`, `adresseRue`, `codePostal`, `ville`, `
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Groupe`
+-- Table structure for table `Groupe`
 --
 
 CREATE TABLE `Groupe` (
@@ -121,7 +102,7 @@ CREATE TABLE `Groupe` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Contenu de la table `Groupe`
+-- Dumping data for table `Groupe`
 --
 
 INSERT INTO `Groupe` (`id`, `nom`, `identiteResponsable`, `adressePostale`, `nombrePersonnes`, `nomPays`, `hebergement`) VALUES
@@ -173,7 +154,7 @@ INSERT INTO `Groupe` (`id`, `nom`, `identiteResponsable`, `adressePostale`, `nom
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Lieu`
+-- Table structure for table `Lieu`
 --
 
 CREATE TABLE `Lieu` (
@@ -184,7 +165,7 @@ CREATE TABLE `Lieu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Contenu de la table `Lieu`
+-- Dumping data for table `Lieu`
 --
 
 INSERT INTO `Lieu` (`id`, `nomLieu`, `adresseLieu`, `capaciteAccueil`) VALUES
@@ -196,7 +177,7 @@ INSERT INTO `Lieu` (`id`, `nomLieu`, `adresseLieu`, `capaciteAccueil`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Offre`
+-- Table structure for table `Offre`
 --
 
 CREATE TABLE `Offre` (
@@ -206,7 +187,7 @@ CREATE TABLE `Offre` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Contenu de la table `Offre`
+-- Dumping data for table `Offre`
 --
 
 INSERT INTO `Offre` (`idEtab`, `idTypeChambre`, `nombreChambres`) VALUES
@@ -222,7 +203,7 @@ INSERT INTO `Offre` (`idEtab`, `idTypeChambre`, `nombreChambres`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Representation`
+-- Table structure for table `Representation`
 --
 
 CREATE TABLE `Representation` (
@@ -232,31 +213,31 @@ CREATE TABLE `Representation` (
   `dateRep` date NOT NULL,
   `heureDebut` time NOT NULL,
   `heureFin` time NOT NULL,
-  `nbPlacesVendues` int NOT NULL DEFAULT 0
+  `nbPlacesVendues` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Contenu de la table `Representation`
+-- Dumping data for table `Representation`
 --
 
-INSERT INTO `Representation` (`id`, `idLieu`, `idGroupe`, `dateRep`, `heureDebut`, `heureFin`) VALUES
-(3, 2, 'g024', '2017-07-11', '19:00:00', '20:00:00'),
-(8, 1, 'g008', '2017-07-12', '20:30:00', '22:00:00'),
-(9, 1, 'g009', '2017-07-12', '22:15:00', '23:30:00'),
-(13, 1, 'g020', '2017-07-14', '19:30:00', '21:00:00'),
-(14, 1, 'g022', '2017-07-14', '21:15:00', '23:00:00'),
-(15, 3, 'g010', '2017-07-14', '14:00:00', '14:30:00'),
-(16, 3, 'g011', '2017-07-14', '14:30:00', '15:00:00'),
-(17, 3, 'g012', '2017-07-14', '15:00:00', '15:30:00'),
-(18, 3, 'g013', '2017-07-14', '15:30:00', '16:00:00'),
-(19, 3, 'g017', '2017-07-14', '16:00:00', '16:30:00'),
-(20, 3, 'g018', '2017-07-14', '16:30:00', '17:00:00'),
-(25, 4, 'g025', '2017-07-15', '15:00:00', '16:00:00');
+INSERT INTO `Representation` (`id`, `idLieu`, `idGroupe`, `dateRep`, `heureDebut`, `heureFin`, `nbPlacesVendues`) VALUES
+(3, 2, 'g024', '2017-07-11', '19:00:00', '20:00:00', 0),
+(8, 1, 'g008', '2017-07-12', '20:30:00', '22:00:00', 0),
+(9, 1, 'g009', '2017-07-12', '22:15:00', '23:30:00', 24),
+(13, 1, 'g020', '2017-07-14', '19:30:00', '21:00:00', 1),
+(14, 1, 'g022', '2017-07-14', '21:15:00', '23:00:00', 282),
+(15, 3, 'g010', '2017-07-14', '14:00:00', '14:30:00', 0),
+(16, 3, 'g011', '2017-07-14', '14:30:00', '15:00:00', 0),
+(17, 3, 'g012', '2017-07-14', '15:00:00', '15:30:00', 0),
+(18, 3, 'g013', '2017-07-14', '15:30:00', '16:00:00', 0),
+(19, 3, 'g017', '2017-07-14', '16:00:00', '16:30:00', 0),
+(20, 3, 'g018', '2017-07-14', '16:30:00', '17:00:00', 0),
+(25, 4, 'g025', '2017-07-15', '15:00:00', '16:00:00', 0);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `TypeChambre`
+-- Table structure for table `TypeChambre`
 --
 
 CREATE TABLE `TypeChambre` (
@@ -265,7 +246,7 @@ CREATE TABLE `TypeChambre` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Contenu de la table `TypeChambre`
+-- Dumping data for table `TypeChambre`
 --
 
 INSERT INTO `TypeChambre` (`id`, `libelle`) VALUES
@@ -275,12 +256,33 @@ INSERT INTO `TypeChambre` (`id`, `libelle`) VALUES
 ('C4', '6 à 8 lits'),
 ('C5', '8 à 12 lits');
 
+-- --------------------------------------------------------
+
 --
--- Index pour les tables exportées
+-- Table structure for table `Utilisateur`
+--
+
+CREATE TABLE `Utilisateur` (
+  `id` int(11) NOT NULL,
+  `login` varchar(45) COLLATE utf8_bin NOT NULL,
+  `password` varchar(45) COLLATE utf8_bin NOT NULL,
+  `nom` varchar(45) COLLATE utf8_bin NOT NULL,
+  `prenom` varchar(45) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `Utilisateur`
+--
+
+INSERT INTO `Utilisateur` (`id`, `login`, `password`, `nom`, `prenom`) VALUES
+(1, '��Κ�ww�u0010�u000f��6u0011�', 'B��u0010z;��', 'joliverie', 'btssio');
+
+--
+-- Indexes for dumped tables
 --
 
 --
--- Index pour la table `Attribution`
+-- Indexes for table `Attribution`
 --
 ALTER TABLE `Attribution`
   ADD PRIMARY KEY (`idEtab`,`idTypeChambre`,`idGroupe`),
@@ -288,32 +290,32 @@ ALTER TABLE `Attribution`
   ADD KEY `idGroupe` (`idGroupe`);
 
 --
--- Index pour la table `Etablissement`
+-- Indexes for table `Etablissement`
 --
 ALTER TABLE `Etablissement`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `Groupe`
+-- Indexes for table `Groupe`
 --
 ALTER TABLE `Groupe`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `Lieu`
+-- Indexes for table `Lieu`
 --
 ALTER TABLE `Lieu`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `Offre`
+-- Indexes for table `Offre`
 --
 ALTER TABLE `Offre`
   ADD PRIMARY KEY (`idEtab`,`idTypeChambre`),
   ADD KEY `idTypeChambre` (`idTypeChambre`);
 
 --
--- Index pour la table `Representation`
+-- Indexes for table `Representation`
 --
 ALTER TABLE `Representation`
   ADD PRIMARY KEY (`id`),
@@ -321,31 +323,31 @@ ALTER TABLE `Representation`
   ADD KEY `idGroupe` (`idGroupe`);
 
 --
--- Index pour la table `TypeChambre`
+-- Indexes for table `TypeChambre`
 --
 ALTER TABLE `TypeChambre`
   ADD PRIMARY KEY (`id`);
 
 --
--- Contraintes pour les tables exportées
+-- Constraints for dumped tables
 --
 
 --
--- Contraintes pour la table `Attribution`
+-- Constraints for table `Attribution`
 --
 ALTER TABLE `Attribution`
   ADD CONSTRAINT `fk1_Attribution` FOREIGN KEY (`idGroupe`) REFERENCES `Groupe` (`id`),
   ADD CONSTRAINT `fk2_Attribution` FOREIGN KEY (`idEtab`,`idTypeChambre`) REFERENCES `Offre` (`idEtab`, `idTypeChambre`);
 
 --
--- Contraintes pour la table `Offre`
+-- Constraints for table `Offre`
 --
 ALTER TABLE `Offre`
   ADD CONSTRAINT `fk1_Offre` FOREIGN KEY (`idEtab`) REFERENCES `Etablissement` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk2_Offre` FOREIGN KEY (`idTypeChambre`) REFERENCES `TypeChambre` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `Representation`
+-- Constraints for table `Representation`
 --
 ALTER TABLE `Representation`
   ADD CONSTRAINT `fk_presentation_groupe` FOREIGN KEY (`idGroupe`) REFERENCES `Groupe` (`id`),
