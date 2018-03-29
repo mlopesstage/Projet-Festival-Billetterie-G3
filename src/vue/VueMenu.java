@@ -152,4 +152,5 @@ public class VueMenu extends javax.swing.JFrame {
     public void setjLabelUtilisateur(JLabel jLabelUtilisateur) {
         this.jLabelUtilisateur = jLabelUtilisateur;
     }
+    
 }
