@@ -117,7 +117,7 @@ public class CtrlConnexionLocal implements WindowListener, ActionListener {
                     ex.printStackTrace();              
                 }
             } else {
-            
+            vue.getjLabelConnexionReussie().setText("Connexion distante non disponible");
         } 
 
     }
