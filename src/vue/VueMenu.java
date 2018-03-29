@@ -42,6 +42,11 @@ public class VueMenu extends javax.swing.JFrame {
         jButtonConnexion.setText("Connexion");
 
         jButtonDeconnexion.setText("Déconnexion");
+        jButtonDeconnexion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDeconnexionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -85,6 +90,10 @@ public class VueMenu extends javax.swing.JFrame {
     private void jButtonRepresentationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRepresentationsActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonRepresentationsActionPerformed
+
+    private void jButtonDeconnexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeconnexionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonDeconnexionActionPerformed
  
     /**
      * @param args the command line arguments
@@ -153,4 +162,12 @@ public class VueMenu extends javax.swing.JFrame {
         this.jLabelUtilisateur = jLabelUtilisateur;
     }
     
+    public JButton getjButtonDeconnexion() {
+        return jButtonDeconnexion;
+    }
+
+    public void setjButtonDeconnexion(JButton jButtonDeconnexion) {
+        this.jButtonDeconnexion = jButtonDeconnexion;
+    }
+
 }
