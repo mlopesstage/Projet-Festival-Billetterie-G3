@@ -20,7 +20,9 @@ public class CtrlMenu implements WindowListener, ActionListener {
         this.vue.addWindowListener(this);
         vue.getjButtonRepresentations().addActionListener(this);
         vue.getjButtonConnexion().addActionListener(this);
+        vue.getjButtonDeconnexion().addActionListener(this);
         this.ctrlPrincipal = ctrl;
+        vue.getjButtonDeconnexion().setEnabled(false);
     }
     
     private void quitter() {
@@ -66,8 +68,10 @@ public class CtrlMenu implements WindowListener, ActionListener {
     public void windowActivated(WindowEvent e) {
         if (ctrlPrincipal.getConnecter() == null) {
             vue.getjButtonRepresentations().setEnabled(false);
-        } else {
+        } else if (ctrlPrincipal.getConnecter() != null){           
             vue.getjButtonRepresentations().setEnabled(true);
+            vue.getjButtonDeconnexion().setEnabled(true);
+            vue.getjButtonConnexion().setEnabled(false);
             vue.getjLabelUtilisateur().setText("Connecté en tant que : " + ctrlPrincipal.getConnecter());
         }     
     }
@@ -82,6 +86,12 @@ public class CtrlMenu implements WindowListener, ActionListener {
             ctrlPrincipal.afficherLesRepresentations();
         } else if (e.getSource().equals(vue.getjButtonConnexion())) {
             ctrlPrincipal.afficherConnexion();
+        } else if (e.getSource().equals(vue.getjButtonDeconnexion())) {
+            ctrlPrincipal.setConnecter(null);
+            vue.getjButtonDeconnexion().setEnabled(false);
+            vue.getjButtonConnexion().setEnabled(true);
+            vue.getjLabelUtilisateur().setText("");
+            vue.getjButtonRepresentations().setEnabled(false);
         }
     }
 }
