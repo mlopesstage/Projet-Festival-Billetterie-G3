@@ -12,7 +12,6 @@ import java.io.InputStream;
 import java.util.Properties;
 import javax.swing.JOptionPane;
 import chiffrage.Encryptage;
-import com.sun.java.accessibility.util.AWTEventMonitor;
 
 public class CtrlConnexionLocal implements WindowListener, ActionListener {
     
