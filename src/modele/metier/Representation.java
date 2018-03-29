@@ -1,17 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package modele.metier;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-/**
- *
- * @author ychantreau
- */
 public class Representation {
     
    private int id;
@@ -45,7 +36,6 @@ public class Representation {
     public void setNbPlacesVendues(int nbPlacesVendues) {
         this.nbPlacesVendues = nbPlacesVendues;
     }
-    
 
     public int getId() {
         return id;
@@ -99,7 +89,4 @@ public class Representation {
     public String toString() {
         return "Representation_1{" + "id=" + id + ", lieu=" + lieu + ", groupe=" + groupe + ", dateRep=" + dateRep + ", heureDebut=" + heureDebut + ", heureFin=" + heureFin + ", nbPlacesVendues=" + nbPlacesVendues + '}';
     }
-    
-   
 }
-

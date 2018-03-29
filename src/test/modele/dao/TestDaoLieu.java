@@ -6,10 +6,6 @@ import modele.dao.DaoLieu;
 import modele.dao.Jdbc;
 import modele.metier.Lieu;
 
-/**
- *
- * @author btssio
- */
 public class TestDaoLieu {
 
     public static void main(String[] args) {
@@ -36,7 +32,6 @@ public class TestDaoLieu {
                 System.err.println("Erreur de fermeture de la connexion JDBC : " + e);
             }
         }
-
     }
 
     /**

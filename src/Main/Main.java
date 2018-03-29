@@ -1,12 +1,5 @@
 package Main;
 
-
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 import modele.dao.Jdbc;
 import vue.*;
 import controleur.*;
@@ -20,17 +13,11 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author ychantreau
- */
 public class Main {
     
-
     /**
      * @param args the command line arguments
      */
-
     public static void main(String[] args) {        
 //        Jdbc.creer("oracle.jdbc.driver.OracleDriver", "jdbc:oracle:thin:", "@localhost:1521:XE", "", "btssio", "btssio");
         final Properties prop = new Properties();

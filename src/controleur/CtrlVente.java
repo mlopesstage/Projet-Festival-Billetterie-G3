@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controleur;
 
 import java.awt.event.ActionEvent;
@@ -20,12 +15,7 @@ import modele.metier.Representation;
 import vue.VueMenu;
 import vue.VueVente;
 
-/**
- *
- * @author mlopes
- */
 public class CtrlVente implements WindowListener, ActionListener {
-    
     
     VueVente vue = new VueVente();
     private CtrlPrincipal ctrlPrincipal;
@@ -56,7 +46,7 @@ public class CtrlVente implements WindowListener, ActionListener {
             leLieu = laRepresentation.getLieu();
             leGroupe = laRepresentation.getGroupe();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(getVue(), "CtrlLesRepresentations - échec de sélection de la representation");
+            JOptionPane.showMessageDialog(getVue(), "Échec de sélection de la representation");
         }
         String label = "N°" + idRep + " lieu : " + leLieu.getNom() + " groupe : " + leGroupe.getNom();
         String label2 = "Le " + laRepresentation.getDateRep() + " entre " + laRepresentation.getHeureDebut() + " et " + laRepresentation.getHeureFin();
@@ -74,7 +64,7 @@ public class CtrlVente implements WindowListener, ActionListener {
             try {
                 laRepresentation = DaoRepresentation.selectOne(ctrlPrincipal.getIdRep());
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(getVue(), "CtrlLesRepresentations - échec de sélection de la representation");
+                JOptionPane.showMessageDialog(getVue(), "Échec de sélection de la representation");
             }
             int nbPlacesVendues = Integer.parseInt(vue.getjTextFieldNbPlace().getText());
             vendreDesPlaces(ctrlPrincipal.getIdRep(),laRepresentation.getNbPlacesVendues() + nbPlacesVendues);
@@ -89,12 +79,12 @@ public class CtrlVente implements WindowListener, ActionListener {
             laRepresentation = DaoRepresentation.selectOne(idRep);
             leLieu = laRepresentation.getLieu();
             if((leLieu.getCapacite() - laRepresentation.getNbPlacesVendues()) < nbPlacesVendues){
-                JOptionPane.showMessageDialog(getVue(), "CtrlLesRepresentations - Il n'y a pas assez de places disponibles");
+                JOptionPane.showMessageDialog(getVue(), "Il n'y a pas assez de places disponibles");
             }else{
                 DaoRepresentation.vendreRepresentation(idRep,nbPlacesVendues);
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(getVue(), "CtrlLesRepresentations - échec de sélection de la representation");
+            JOptionPane.showMessageDialog(getVue(), "Échec de sélection de la representation");
         }
     }
     
@@ -135,8 +125,6 @@ public class CtrlVente implements WindowListener, ActionListener {
     }
 
     @Override
-    public void windowDeactivated(WindowEvent e) {
-        
+        public void windowDeactivated(WindowEvent e) {
     }
-    
 }

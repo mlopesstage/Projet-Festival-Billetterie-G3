@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package vue;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-/**
- *
- * @author mlopes
- */
 public class VueVente extends javax.swing.JFrame {
 
     /**
@@ -218,5 +209,4 @@ public class VueVente extends javax.swing.JFrame {
     public void setjButtonValider(JButton jButtonValider) {
         this.jButtonValider = jButtonValider;
     }
-    
 }

@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package modele.metier;
 
-/**
- *
- * @author ychantreau
- */
 public class Groupe {
     /**
      * identifiant du groupe ("gxxx")
@@ -120,5 +111,4 @@ public class Groupe {
     public void setI(String nantes) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
 }

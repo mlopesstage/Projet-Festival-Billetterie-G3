@@ -6,10 +6,6 @@ import modele.dao.DaoRepresentation;
 import modele.dao.Jdbc;
 import modele.metier.Representation;
 
-/**
- *
- * @author btssio
- */
 public class TestDaoRepresentation {
 
     public static void main(String[] args) {
@@ -40,7 +36,6 @@ public class TestDaoRepresentation {
                 System.err.println("Erreur de fermeture de la connexion JDBC : " + e);
             }
         }
-
     }
 
     /**

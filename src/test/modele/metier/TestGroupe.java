@@ -4,7 +4,6 @@ import modele.metier.Groupe;
 
 /**
  * Test unitaire de la classe Groupe
- * @author btssio
  */
 public class TestGroupe {
 

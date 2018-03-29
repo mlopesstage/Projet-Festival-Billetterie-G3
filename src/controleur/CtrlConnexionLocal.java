@@ -1,9 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controleur;
+
 import vue.VueConnexionLocal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,13 +14,7 @@ import javax.swing.JOptionPane;
 import chiffrage.Encryptage;
 import com.sun.java.accessibility.util.AWTEventMonitor;
 
-
-/**
- *
- * @author btssio
- */
 public class CtrlConnexionLocal implements WindowListener, ActionListener {
-    
     
     VueConnexionLocal vue = new VueConnexionLocal();
     private CtrlPrincipal ctrlPrincipal;
@@ -66,18 +56,15 @@ public class CtrlConnexionLocal implements WindowListener, ActionListener {
     
 
     @Override
-    public void windowOpened(WindowEvent e) {
-        
+    public void windowOpened(WindowEvent e) {   
     }
 
     @Override
     public void windowClosing(WindowEvent e) {
-        
     }
 
     @Override
     public void windowClosed(WindowEvent e) {
-        
     }
 
     @Override
@@ -86,16 +73,14 @@ public class CtrlConnexionLocal implements WindowListener, ActionListener {
     }
 
     @Override
-    public void windowDeiconified(WindowEvent e) {
-        
+    public void windowDeiconified(WindowEvent e) {  
     }
 
     @Override
     public void windowActivated(WindowEvent e) {              
         vue.getjTextFieldUtil().setText("");
         vue.getjTextFieldMdp().setText("");
-        vue.getjLabelConnexionReussie().setText("");
-             
+        vue.getjLabelConnexionReussie().setText("");   
     }
 
     @Override
@@ -130,8 +115,6 @@ public class CtrlConnexionLocal implements WindowListener, ActionListener {
             } catch (final IOException ex) {
                 ex.printStackTrace();              
             }
-            
         }
-    
     }
 }

@@ -1,10 +1,6 @@
 package controleur;
-import javax.swing.JOptionPane;
-/**
- *
- * @author mlopes
- */
 
+import javax.swing.JOptionPane;
 
 public class CtrlPrincipal {
     
@@ -102,7 +98,4 @@ public class CtrlPrincipal {
     public void setConnecter(String connecter) {
         this.connecter = connecter;
     }
-    
-    
-    
 }
