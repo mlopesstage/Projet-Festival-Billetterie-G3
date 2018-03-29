@@ -7,8 +7,6 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class VueConnexionLocal extends javax.swing.JFrame {
-    
-    boolean entree = false;
 
     /**
      * Creates new form VueConnexion

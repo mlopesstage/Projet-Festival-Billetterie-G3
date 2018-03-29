@@ -28,7 +28,8 @@ public class CtrlConnexionLocal implements WindowListener, ActionListener {
         vue.getjTextFieldUtil().addActionListener(this);
         vue.getjTextFieldMdp().addActionListener(this);
         vue.getjButtonRetour().addActionListener(this);
-        vue.getjButtonValider().addActionListener(this);        
+        vue.getjButtonValider().addActionListener(this);   
+        vue.getjCheckBoxConnexion().addActionListener(this);
         this.ctrlPrincipal = ctrl;
     }
     
@@ -92,23 +93,21 @@ public class CtrlConnexionLocal implements WindowListener, ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(vue.getjButtonRetour())) {
             ctrlPrincipal.afficherLeMenu();
-        } else 
-            if (e.getSource().equals(vue.getjButtonValider()) 
-            || e.getSource().equals(vue.getjTextFieldUtil())
-            || e.getSource().equals(vue.getjTextFieldMdp())) {
-            String util = vue.getjTextFieldUtil().getText();
-            String mdp = vue.getjTextFieldMdp().getText();
-            util = Encryptage.encrypt(util, "b");
-            mdp = Encryptage.encrypt(mdp, "f");
-            if (vue.getjCheckBoxConnexion().isSelected()){
-               //Utilisateur util = new Utilisateur;
-            }else{
+        }        
+        if (vue.getjCheckBoxConnexion().isSelected() && (e.getSource().equals(vue.getjButtonValider()) || e.getSource().equals(vue.getjTextFieldUtil())
+            || e.getSource().equals(vue.getjTextFieldMdp()))) {           
+            //if (e.getSource().equals(vue.getjButtonValider()) 
+            //|| e.getSource().equals(vue.getjTextFieldUtil())
+            //|| e.getSource().equals(vue.getjTextFieldMdp())) {
+                
+                String util = vue.getjTextFieldUtil().getText();
+                String mdp = vue.getjTextFieldMdp().getText();
+                util = Encryptage.encrypt(util, "b");
+                mdp = Encryptage.encrypt(mdp, "f");
                 try {
                     input = new FileInputStream("src/domaine/properties/util.properties");
                     prop.load(input);
-
                     if (util.equals(prop.getProperty("util1")) && mdp.equals(prop.getProperty("mdp1"))) {
-
                         vue.getjLabelConnexionReussie().setText("Connexion réussie");                 
                         util = vue.getjTextFieldUtil().getText();
                         ctrlPrincipal.setConnecter(util);
@@ -119,7 +118,10 @@ public class CtrlConnexionLocal implements WindowListener, ActionListener {
                 } catch (final IOException ex) {
                     ex.printStackTrace();              
                 }
-            }
-        }
+            } else {
+            vue.getjLabelConnexionReussie().setText("Connexion distante non disponible");
+        } 
+
     }
+    
 }
