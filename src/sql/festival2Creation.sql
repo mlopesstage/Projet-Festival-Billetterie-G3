@@ -16,6 +16,9 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
+CREATE USER IF NOT EXISTS 'festival2_g3_ut'@'localhost' IDENTIFIED BY 'f2_g3_mdp';
+GRANT ALL PRIVILEGES ON festival2.*TO 'festival2_g3_ut'@'localhost';
+
 --
 -- Database: `festival2`
 --
