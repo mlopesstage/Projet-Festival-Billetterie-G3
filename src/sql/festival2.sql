@@ -29,6 +29,27 @@ GRANT ALL PRIVILEGES ON festival2.* TO 'festival2_g3_ut'@'localhost';
 -- Structure de la table `Attribution`
 --
 
+CREATE TABLE `Utilisateur` (
+  `id` int(11) NOT NULL,
+  `login` varchar(45) COLLATE utf8_bin NOT NULL,
+  `password` varchar(45) COLLATE utf8_bin NOT NULL,
+  `nom` varchar(45) COLLATE utf8_bin NOT NULL,
+  `prenom` varchar(45) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Contenu de la table `Attribution`
+--
+
+INSERT INTO `Utilisateur` (`id`, `login`, `password`, `nom`,`prenom`) VALUES
+(1, '��Κ�ww�\u0010�\u000f��6\u0011�', 'B��\u0010z;��', 'joliverie','btssio');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `Attribution`
+--
+
 CREATE TABLE `Attribution` (
   `idEtab` char(8) COLLATE utf8_bin NOT NULL,
   `idTypeChambre` char(2) COLLATE utf8_bin NOT NULL,
