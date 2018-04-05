@@ -10,6 +10,7 @@ public class VueMenu extends javax.swing.JFrame {
      */
     public VueMenu() {
         initComponents();
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
     }
 
     /**

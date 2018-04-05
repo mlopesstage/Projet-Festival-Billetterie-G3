@@ -13,6 +13,7 @@ public class VueConnexionDistante extends javax.swing.JFrame {
      */
     public VueConnexionDistante() {
         initComponents();
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
     }
 
     /**

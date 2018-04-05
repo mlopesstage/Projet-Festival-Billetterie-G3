@@ -13,6 +13,7 @@ public class VueConnexionLocal extends javax.swing.JFrame {
      */
     public VueConnexionLocal() {
         initComponents();
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
     }
 
     /**
