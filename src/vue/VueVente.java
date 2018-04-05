@@ -11,6 +11,7 @@ public class VueVente extends javax.swing.JFrame {
      */
     public VueVente() {
         initComponents();
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
     }
 
     /**

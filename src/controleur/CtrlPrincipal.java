@@ -58,7 +58,8 @@ public class CtrlPrincipal {
         if (rep == JOptionPane.YES_OPTION) {
             // mettre fin à l'application
             System.exit(0);
-        }else if (rep == JOptionPane.NO_OPTION || rep == JOptionPane.CLOSED_OPTION){
+        }else {
+            return;
         }
     }
 

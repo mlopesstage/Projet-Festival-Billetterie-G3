@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.4.1deb2ubuntu2
+-- version 4.0.10deb1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Mar 29, 2018 at 03:07 PM
--- Server version: 5.7.21-0ubuntu0.16.04.1
--- PHP Version: 7.0.28-0ubuntu0.16.04.1
+-- Client: localhost
+-- Généré le: Jeu 05 Avril 2018 à 17:43
+-- Version du serveur: 5.5.43-0ubuntu0.14.04.1
+-- Version de PHP: 5.5.9-1ubuntu4.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 CREATE USER IF NOT EXISTS 'festival2_g3_ut'@'localhost' IDENTIFIED BY 'f2_g3_mdp';
 GRANT ALL PRIVILEGES ON festival2.*TO 'festival2_g3_ut'@'localhost';
@@ -25,21 +25,22 @@ GRANT ALL PRIVILEGES ON festival2.*TO 'festival2_g3_ut'@'localhost';
 CREATE DATABASE IF NOT EXISTS `festival2` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
 USE `festival2`;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `Attribution`
+-- Structure de la table `Attribution`
 --
 
-CREATE TABLE `Attribution` (
+CREATE TABLE IF NOT EXISTS `Attribution` (
   `idEtab` char(8) COLLATE utf8_bin NOT NULL,
   `idTypeChambre` char(2) COLLATE utf8_bin NOT NULL,
   `idGroupe` char(4) COLLATE utf8_bin NOT NULL,
-  `nombreChambres` int(11) NOT NULL
+  `nombreChambres` int(11) NOT NULL,
+  PRIMARY KEY (`idEtab`,`idTypeChambre`,`idGroupe`),
+  KEY `idTypeChambre` (`idTypeChambre`),
+  KEY `idGroupe` (`idGroupe`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `Attribution`
+-- Contenu de la table `Attribution`
 --
 
 INSERT INTO `Attribution` (`idEtab`, `idTypeChambre`, `idGroupe`, `nombreChambres`) VALUES
@@ -59,10 +60,10 @@ INSERT INTO `Attribution` (`idEtab`, `idTypeChambre`, `idGroupe`, `nombreChambre
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Etablissement`
+-- Structure de la table `Etablissement`
 --
 
-CREATE TABLE `Etablissement` (
+CREATE TABLE IF NOT EXISTS `Etablissement` (
   `id` char(8) COLLATE utf8_bin NOT NULL,
   `nom` varchar(45) COLLATE utf8_bin NOT NULL,
   `adresseRue` varchar(45) COLLATE utf8_bin NOT NULL,
@@ -73,36 +74,38 @@ CREATE TABLE `Etablissement` (
   `type` tinyint(4) NOT NULL,
   `civiliteResponsable` varchar(12) COLLATE utf8_bin NOT NULL,
   `nomResponsable` varchar(25) COLLATE utf8_bin NOT NULL,
-  `prenomResponsable` varchar(25) COLLATE utf8_bin DEFAULT NULL
+  `prenomResponsable` varchar(25) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `Etablissement`
+-- Contenu de la table `Etablissement`
 --
 
 INSERT INTO `Etablissement` (`id`, `nom`, `adresseRue`, `codePostal`, `ville`, `tel`, `adresseElectronique`, `type`, `civiliteResponsable`, `nomResponsable`, `prenomResponsable`) VALUES
-('0350773A', 'Collège Ste Jeanne d\'Arc-Choisy', '3, avenue de la Borderie BP 32', '35404', 'Paramé', '0299560159', NULL, 1, 'Madame', 'LEFORT', 'Anne'),
+('0350773A', 'Collège Ste Jeanne d''Arc-Choisy', '3, avenue de la Borderie BP 32', '35404', 'Paramé', '0299560159', NULL, 1, 'Madame', 'LEFORT', 'Anne'),
 ('0350785N', 'Collège de Moka', '2 avenue Aristide Briand BP 6', '35401', 'Saint-Malo', '0299206990', NULL, 1, 'Monsieur', 'DUPONT', 'Alain'),
 ('0352072M', 'Institution Saint-Malo Providence', '2 rue du collège BP 31863', '35418', 'Saint-Malo', '0299407474', NULL, 1, 'Monsieur', 'DURAND', 'Pierre');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Groupe`
+-- Structure de la table `Groupe`
 --
 
-CREATE TABLE `Groupe` (
+CREATE TABLE IF NOT EXISTS `Groupe` (
   `id` char(4) COLLATE utf8_bin NOT NULL,
   `nom` varchar(40) COLLATE utf8_bin NOT NULL,
   `identiteResponsable` varchar(40) COLLATE utf8_bin DEFAULT NULL,
   `adressePostale` varchar(120) COLLATE utf8_bin DEFAULT NULL,
   `nombrePersonnes` int(11) NOT NULL,
   `nomPays` varchar(40) COLLATE utf8_bin NOT NULL,
-  `hebergement` char(1) COLLATE utf8_bin NOT NULL
+  `hebergement` char(1) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `Groupe`
+-- Contenu de la table `Groupe`
 --
 
 INSERT INTO `Groupe` (`id`, `nom`, `identiteResponsable`, `adressePostale`, `nombrePersonnes`, `nomPays`, `hebergement`) VALUES
@@ -125,8 +128,8 @@ INSERT INTO `Groupe` (`id`, `nom`, `identiteResponsable`, `adressePostale`, `nom
 ('g017', 'Groupe folklorique turc', NULL, NULL, 40, 'Turquie', 'O'),
 ('g018', 'Groupe folklorique russe', NULL, NULL, 43, 'Russie', 'O'),
 ('g019', 'Ruhunu Ballet du village de Kosgoda', NULL, NULL, 27, 'Sri Lanka', 'O'),
-('g020', 'L\'Alen', NULL, NULL, 34, 'France - Provence', 'O'),
-('g021', 'L\'escolo Di Tourre', NULL, NULL, 40, 'France - Provence', 'O'),
+('g020', 'L''Alen', NULL, NULL, 34, 'France - Provence', 'O'),
+('g021', 'L''escolo Di Tourre', NULL, NULL, 40, 'France - Provence', 'O'),
 ('g022', 'Deloubes Kévin', NULL, NULL, 1, 'France - Bretagne', 'O'),
 ('g023', 'Daonie See', NULL, NULL, 5, 'France - Bretagne', 'O'),
 ('g024', 'Boxty', NULL, NULL, 5, 'France - Bretagne', 'O'),
@@ -142,7 +145,7 @@ INSERT INTO `Groupe` (`id`, `nom`, `identiteResponsable`, `adressePostale`, `nom
 ('g034', 'Bagad An Hanternoz', NULL, NULL, 0, 'France - Bretagne', 'N'),
 ('g035', 'Cercle Ar Vro Melenig', NULL, NULL, 0, 'France - Bretagne', 'N'),
 ('g036', 'Cercle An Abadenn Nevez', NULL, NULL, 0, 'France - Bretagne', 'N'),
-('g037', 'Kerc\'h Keltiek Roazhon', NULL, NULL, 0, 'France - Bretagne', 'N'),
+('g037', 'Kerc''h Keltiek Roazhon', NULL, NULL, 0, 'France - Bretagne', 'N'),
 ('g038', 'Bagad Plougastel', NULL, NULL, 0, 'France - Bretagne', 'N'),
 ('g039', 'Bagad Nozeganed Bro Porh-Loeiz', NULL, NULL, 0, 'France - Bretagne', 'N'),
 ('g040', 'Bagad Nozeganed Bro Porh-Loeiz', NULL, NULL, 0, 'France - Bretagne', 'N'),
@@ -154,18 +157,19 @@ INSERT INTO `Groupe` (`id`, `nom`, `identiteResponsable`, `adressePostale`, `nom
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Lieu`
+-- Structure de la table `Lieu`
 --
 
-CREATE TABLE `Lieu` (
+CREATE TABLE IF NOT EXISTS `Lieu` (
   `id` int(11) NOT NULL,
   `nomLieu` varchar(45) COLLATE utf8_bin NOT NULL,
   `adresseLieu` varchar(128) COLLATE utf8_bin NOT NULL,
-  `capaciteAccueil` int(11) NOT NULL
+  `capaciteAccueil` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `Lieu`
+-- Contenu de la table `Lieu`
 --
 
 INSERT INTO `Lieu` (`id`, `nomLieu`, `adresseLieu`, `capaciteAccueil`) VALUES
@@ -177,17 +181,19 @@ INSERT INTO `Lieu` (`id`, `nomLieu`, `adresseLieu`, `capaciteAccueil`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Offre`
+-- Structure de la table `Offre`
 --
 
-CREATE TABLE `Offre` (
+CREATE TABLE IF NOT EXISTS `Offre` (
   `idEtab` char(8) COLLATE utf8_bin NOT NULL,
   `idTypeChambre` char(2) COLLATE utf8_bin NOT NULL,
-  `nombreChambres` int(11) NOT NULL
+  `nombreChambres` int(11) NOT NULL,
+  PRIMARY KEY (`idEtab`,`idTypeChambre`),
+  KEY `idTypeChambre` (`idTypeChambre`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `Offre`
+-- Contenu de la table `Offre`
 --
 
 INSERT INTO `Offre` (`idEtab`, `idTypeChambre`, `nombreChambres`) VALUES
@@ -203,29 +209,32 @@ INSERT INTO `Offre` (`idEtab`, `idTypeChambre`, `nombreChambres`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Representation`
+-- Structure de la table `Representation`
 --
 
-CREATE TABLE `Representation` (
+CREATE TABLE IF NOT EXISTS `Representation` (
   `id` int(11) NOT NULL,
   `idLieu` int(11) NOT NULL,
   `idGroupe` char(4) COLLATE utf8_bin NOT NULL,
   `dateRep` date NOT NULL,
   `heureDebut` time NOT NULL,
   `heureFin` time NOT NULL,
-  `nbPlacesVendues` int(11) NOT NULL DEFAULT '0'
+  `nbPlacesVendues` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `idLieu` (`idLieu`),
+  KEY `idGroupe` (`idGroupe`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `Representation`
+-- Contenu de la table `Representation`
 --
 
 INSERT INTO `Representation` (`id`, `idLieu`, `idGroupe`, `dateRep`, `heureDebut`, `heureFin`, `nbPlacesVendues`) VALUES
 (3, 2, 'g024', '2017-07-11', '19:00:00', '20:00:00', 0),
 (8, 1, 'g008', '2017-07-12', '20:30:00', '22:00:00', 0),
-(9, 1, 'g009', '2017-07-12', '22:15:00', '23:30:00', 24),
-(13, 1, 'g020', '2017-07-14', '19:30:00', '21:00:00', 1),
-(14, 1, 'g022', '2017-07-14', '21:15:00', '23:00:00', 282),
+(9, 1, 'g009', '2017-07-12', '22:15:00', '23:30:00', 330),
+(13, 1, 'g020', '2017-07-14', '19:30:00', '21:00:00', 0),
+(14, 1, 'g022', '2017-07-14', '21:15:00', '23:00:00', 25),
 (15, 3, 'g010', '2017-07-14', '14:00:00', '14:30:00', 0),
 (16, 3, 'g011', '2017-07-14', '14:30:00', '15:00:00', 0),
 (17, 3, 'g012', '2017-07-14', '15:00:00', '15:30:00', 0),
@@ -237,16 +246,17 @@ INSERT INTO `Representation` (`id`, `idLieu`, `idGroupe`, `dateRep`, `heureDebut
 -- --------------------------------------------------------
 
 --
--- Table structure for table `TypeChambre`
+-- Structure de la table `TypeChambre`
 --
 
-CREATE TABLE `TypeChambre` (
+CREATE TABLE IF NOT EXISTS `TypeChambre` (
   `id` char(2) COLLATE utf8_bin NOT NULL,
-  `libelle` varchar(15) COLLATE utf8_bin NOT NULL
+  `libelle` varchar(15) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `TypeChambre`
+-- Contenu de la table `TypeChambre`
 --
 
 INSERT INTO `TypeChambre` (`id`, `libelle`) VALUES
@@ -259,10 +269,10 @@ INSERT INTO `TypeChambre` (`id`, `libelle`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Utilisateur`
+-- Structure de la table `Utilisateur`
 --
 
-CREATE TABLE `Utilisateur` (
+CREATE TABLE IF NOT EXISTS `Utilisateur` (
   `id` int(11) NOT NULL,
   `login` varchar(45) COLLATE utf8_bin NOT NULL,
   `password` varchar(45) COLLATE utf8_bin NOT NULL,
@@ -271,83 +281,32 @@ CREATE TABLE `Utilisateur` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `Utilisateur`
+-- Contenu de la table `Utilisateur`
 --
 
 INSERT INTO `Utilisateur` (`id`, `login`, `password`, `nom`, `prenom`) VALUES
 (1, '��Κ�ww����6�', 'B��z;��', 'joliverie', 'btssio');
 
 --
--- Indexes for dumped tables
+-- Contraintes pour les tables exportées
 --
 
 --
--- Indexes for table `Attribution`
---
-ALTER TABLE `Attribution`
-  ADD PRIMARY KEY (`idEtab`,`idTypeChambre`,`idGroupe`),
-  ADD KEY `idTypeChambre` (`idTypeChambre`),
-  ADD KEY `idGroupe` (`idGroupe`);
-
---
--- Indexes for table `Etablissement`
---
-ALTER TABLE `Etablissement`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `Groupe`
---
-ALTER TABLE `Groupe`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `Lieu`
---
-ALTER TABLE `Lieu`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `Offre`
---
-ALTER TABLE `Offre`
-  ADD PRIMARY KEY (`idEtab`,`idTypeChambre`),
-  ADD KEY `idTypeChambre` (`idTypeChambre`);
-
---
--- Indexes for table `Representation`
---
-ALTER TABLE `Representation`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `idLieu` (`idLieu`),
-  ADD KEY `idGroupe` (`idGroupe`);
-
---
--- Indexes for table `TypeChambre`
---
-ALTER TABLE `TypeChambre`
-  ADD PRIMARY KEY (`id`);
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `Attribution`
+-- Contraintes pour la table `Attribution`
 --
 ALTER TABLE `Attribution`
   ADD CONSTRAINT `fk1_Attribution` FOREIGN KEY (`idGroupe`) REFERENCES `Groupe` (`id`),
-  ADD CONSTRAINT `fk2_Attribution` FOREIGN KEY (`idEtab`,`idTypeChambre`) REFERENCES `Offre` (`idEtab`, `idTypeChambre`);
+  ADD CONSTRAINT `fk2_Attribution` FOREIGN KEY (`idEtab`, `idTypeChambre`) REFERENCES `Offre` (`idEtab`, `idTypeChambre`);
 
 --
--- Constraints for table `Offre`
+-- Contraintes pour la table `Offre`
 --
 ALTER TABLE `Offre`
   ADD CONSTRAINT `fk1_Offre` FOREIGN KEY (`idEtab`) REFERENCES `Etablissement` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk2_Offre` FOREIGN KEY (`idTypeChambre`) REFERENCES `TypeChambre` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `Representation`
+-- Contraintes pour la table `Representation`
 --
 ALTER TABLE `Representation`
   ADD CONSTRAINT `fk_presentation_groupe` FOREIGN KEY (`idGroupe`) REFERENCES `Groupe` (`id`),
