@@ -275,7 +275,7 @@ CREATE TABLE `Utilisateur` (
 --
 
 INSERT INTO `Utilisateur` (`id`, `login`, `password`, `nom`, `prenom`) VALUES
-(1, '��Κ�ww�u0010�u000f��6u0011�', 'B��u0010z;��', 'joliverie', 'btssio');
+(1, '��Κ�ww����6�', 'B��z;��', 'joliverie', 'btssio');
 
 --
 -- Indexes for dumped tables

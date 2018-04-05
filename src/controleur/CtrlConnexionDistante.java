@@ -1,6 +1,6 @@
 package controleur;
 
-import vue.VueConnexionLocal;
+import vue.VueConnexionDistante;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -12,15 +12,20 @@ import java.io.InputStream;
 import java.util.Properties;
 import javax.swing.JOptionPane;
 import chiffrage.Encryptage;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modele.dao.DaoUtilisateur;
 import modele.metier.Utilisateur;
 
 public class CtrlConnexionDistante implements WindowListener, ActionListener {
 
-    VueConnexionLocal vue = new VueConnexionLocal();
+    VueConnexionDistante vue = new VueConnexionDistante();
     private CtrlPrincipal ctrlPrincipal;
 
-    public CtrlConnexionDistante(VueConnexionLocal vue, CtrlPrincipal ctrl) {
+    public CtrlConnexionDistante(VueConnexionDistante vue, CtrlPrincipal ctrl) {
 
         this.vue = vue;
         this.vue.addWindowListener(this);
@@ -46,11 +51,11 @@ public class CtrlConnexionDistante implements WindowListener, ActionListener {
         }
     }
 
-    public VueConnexionLocal getVue() {
+    public VueConnexionDistante getVue() {
         return vue;
     }
 
-    public void setVue(VueConnexionLocal vue) {
+    public void setVue(VueConnexionDistante vue) {
         this.vue = vue;
     }
 
@@ -101,19 +106,25 @@ public class CtrlConnexionDistante implements WindowListener, ActionListener {
             String mdp = vue.getjTextFieldMdp().getText();
             util = Encryptage.encrypt(util, "b");
             mdp = Encryptage.encrypt(mdp, "f");
+            boolean connexion = false;
             try {
-                input = new FileInputStream("src/domaine/properties/util.properties");
-                prop.load(input);
-                if (util.equals(prop.getProperty("util1")) && mdp.equals(prop.getProperty("mdp1"))) {
+                List<Utilisateur> lesUtilisateurs = new ArrayList<Utilisateur>();
+                lesUtilisateurs = DaoUtilisateur.selectAll();
+                for(Utilisateur unUtilisateur : lesUtilisateurs){
+                if (util.equals(unUtilisateur.getLogin()) && mdp.equals(unUtilisateur.getPassword())) {
+                    connexion = true;
+                    break;
+                }
+                }
+                if (connexion) {
                     vue.getjLabelConnexionReussie().setText("Connexion réussie");
                     util = vue.getjTextFieldUtil().getText();
                     ctrlPrincipal.setConnecter(util);
-                    ctrlPrincipal.afficherLeMenu();
                 } else {
                     vue.getjLabelConnexionReussie().setText("Utilisateur ou mot de passe incorrect");
                 }
-            } catch (final IOException ex) {
-                ex.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CtrlConnexionDistante.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 

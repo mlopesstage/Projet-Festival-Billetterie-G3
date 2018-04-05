@@ -9,6 +9,8 @@ public class Encryptage {
     public static void main(String[] args) {
         String code = encrypt("joliverie", "b");
         System.out.println(code);
+        String code2 = encrypt("btssio", "f");
+        System.out.println(code2);
     } 
     
     public static String encrypt(String password,String key){

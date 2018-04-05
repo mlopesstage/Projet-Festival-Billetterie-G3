@@ -51,10 +51,13 @@ public class Main {
                 CtrlVente ctrlLaVente = new CtrlVente(laVente, leControleurPrincipal);
                 VueConnexionLocal laConnexionLocal = new VueConnexionLocal();
                 CtrlConnexionLocal ctrlLaConnexionLocal = new CtrlConnexionLocal(laConnexionLocal, leControleurPrincipal);
+                VueConnexionDistante laConnexionDistante = new VueConnexionDistante();
+                CtrlConnexionDistante ctrlLaConnexionDistante = new CtrlConnexionDistante(laConnexionDistante, leControleurPrincipal);
                 leControleurPrincipal.setCtrlMenu(ctrlLeMenu);
                 leControleurPrincipal.setCtrlConnexionLocal(ctrlLaConnexionLocal);
                 leControleurPrincipal.setCtrlLesRepresentations(ctrlLesRepresentations);
                 leControleurPrincipal.setCtrlVente(ctrlLaVente);
+                leControleurPrincipal.setCtrlConnexionDistante(ctrlLaConnexionDistante);
                 leMenu.setVisible(true);
             } catch (ClassNotFoundException ex) {
                 JOptionPane.showMessageDialog(null, "Main - classe JDBC non trouvée");
