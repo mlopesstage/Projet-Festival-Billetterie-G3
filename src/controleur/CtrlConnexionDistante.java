@@ -36,9 +36,6 @@ public class CtrlConnexionDistante implements WindowListener, ActionListener {
         this.ctrlPrincipal = ctrl;
     }
 
-    final Properties prop = new Properties();
-    InputStream input = null;
-
     /**
      * Quitter l'application, après demande de confirmation
      */
