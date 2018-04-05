@@ -180,4 +180,12 @@ public class VueMenu extends javax.swing.JFrame {
         this.jButtonDeconnexion = jButtonDeconnexion;
     }
 
+    public JButton getjButtonConnexionDistante() {
+        return jButtonConnexionDistante;
+    }
+
+    public void setjButtonConnexionDistante(JButton jButtonConnexionDistante) {
+        this.jButtonConnexionDistante = jButtonConnexionDistante;
+    }
+
 }

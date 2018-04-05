@@ -21,6 +21,7 @@ public class CtrlMenu implements WindowListener, ActionListener {
         vue.getjButtonRepresentations().addActionListener(this);
         vue.getjButtonConnexion().addActionListener(this);
         vue.getjButtonDeconnexion().addActionListener(this);
+        vue.getjButtonConnexionDistante().addActionListener(this);
         this.ctrlPrincipal = ctrl;
         vue.getjButtonDeconnexion().setEnabled(false);
     }
@@ -68,11 +69,13 @@ public class CtrlMenu implements WindowListener, ActionListener {
     public void windowActivated(WindowEvent e) {
         if (ctrlPrincipal.getConnecter() == null) {
             vue.getjButtonRepresentations().setEnabled(false);
+            vue.getjButtonConnexionDistante().setEnabled(false);
         } else if (ctrlPrincipal.getConnecter() != null){           
             vue.getjButtonRepresentations().setEnabled(true);
             vue.getjButtonDeconnexion().setEnabled(true);
             vue.getjButtonConnexion().setEnabled(false);
             vue.getjLabelUtilisateur().setText("Connecté en tant que : " + ctrlPrincipal.getConnecter());
+            vue.getjButtonConnexionDistante().setEnabled(true);
         }     
     }
 
@@ -92,6 +95,8 @@ public class CtrlMenu implements WindowListener, ActionListener {
             vue.getjButtonConnexion().setEnabled(true);
             vue.getjLabelUtilisateur().setText("");
             vue.getjButtonRepresentations().setEnabled(false);
+        }else if (e.getSource().equals(vue.getjButtonConnexionDistante())) {
+            ctrlPrincipal.afficherConnexionDistante();
         }
     }
 }
