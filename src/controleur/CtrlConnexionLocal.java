@@ -12,6 +12,8 @@ import java.io.InputStream;
 import java.util.Properties;
 import javax.swing.JOptionPane;
 import chiffrage.Encryptage;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modele.dao.DaoUtilisateur;
 import modele.metier.Utilisateur;
 
@@ -113,9 +115,9 @@ public class CtrlConnexionLocal implements WindowListener, ActionListener {
                     ctrlPrincipal.afficherLeMenu();
                 } else {
                     vue.getjLabelConnexionReussie().setText("Utilisateur ou mot de passe incorrect");
-                }
-            } catch (final IOException ex) {
-                ex.printStackTrace();              
+                }            
+            } catch (IOException ex) {
+                Logger.getLogger(CtrlConnexionLocal.class.getName()).log(Level.SEVERE, null, ex);
             }            
         } 
 
