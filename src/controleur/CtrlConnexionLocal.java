@@ -104,7 +104,7 @@ public class CtrlConnexionLocal implements WindowListener, ActionListener {
             util = Encryptage.encrypt(util, "b");
             mdp = Encryptage.encrypt(mdp, "f");
             try {
-                input = new FileInputStream("src/Main/util.properties");
+                input = new FileInputStream("util.properties");
                 prop.load(input);
                 if (util.equals(prop.getProperty("util1")) && mdp.equals(prop.getProperty("mdp1"))) {
                     vue.getjLabelConnexionReussie().setText("Connexion réussie");                 
