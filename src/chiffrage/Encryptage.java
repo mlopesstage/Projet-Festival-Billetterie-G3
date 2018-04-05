@@ -1,27 +1,27 @@
 package chiffrage;
 
 import java.security.Key;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
 public class Encryptage {
     
-    public static void main(String[] args) {
-        String code = encrypt("joliverie", "b");
-        System.out.println(code);
-        String code2 = encrypt("btssio", "f");
-        System.out.println(code2);
+    public static void main(String[] args) throws NoSuchAlgorithmException {
+        String login = "btssio";
+        
+        MessageDigest mdLogin = MessageDigest.getInstance("MD5");
+        mdLogin.update(login.getBytes());
+        byte[] digestLogin = mdLogin.digest();
+        StringBuffer sbLogin = new StringBuffer();
+        for (byte b : digestLogin) {
+            sbLogin.append(String.format("%02x", b & 0xff));
+        }
+        
+        System.out.println(sbLogin.toString());
     } 
     
-    public static String encrypt(String password,String key){
-        
-        try {
-            Key clef = new SecretKeySpec(key.getBytes("UTF-8"),"Blowfish");
-            Cipher cipher=Cipher.getInstance("Blowfish");
-            cipher.init(Cipher.ENCRYPT_MODE,clef);
-            return new String(cipher.doFinal(password.getBytes()));
-        } catch (Exception e) {
-            return null;
-        }
-    }      
+    
+    
 }
