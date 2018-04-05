@@ -108,8 +108,6 @@ public class CtrlConnexionDistante implements WindowListener, ActionListener {
             mdp = Encryptage.encrypt(mdp, "f");
             boolean connexion = false;
             try {
-                input = new FileInputStream("src/domaine/properties/util.properties");
-                prop.load(input);
                 List<Utilisateur> lesUtilisateurs = new ArrayList<Utilisateur>();
                 lesUtilisateurs = DaoUtilisateur.selectAll();
                 for(Utilisateur unUtilisateur : lesUtilisateurs){
@@ -125,8 +123,6 @@ public class CtrlConnexionDistante implements WindowListener, ActionListener {
                 } else {
                     vue.getjLabelConnexionReussie().setText("Utilisateur ou mot de passe incorrect");
                 }
-            } catch (final IOException ex) {
-                ex.printStackTrace();
             } catch (SQLException ex) {
                 Logger.getLogger(CtrlConnexionDistante.class.getName()).log(Level.SEVERE, null, ex);
             }
