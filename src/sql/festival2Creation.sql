@@ -285,7 +285,7 @@ CREATE TABLE IF NOT EXISTS `Utilisateur` (
 --
 
 INSERT INTO `Utilisateur` (`id`, `login`, `password`, `nom`, `prenom`) VALUES
-(1, '��Κ�ww����6�', 'B��z;��', 'joliverie', 'btssio');
+(1, '2d15fa8b5394c2f25a7a8ecd62c9ae2f', '017fe3a523712ceba7cde169653316e9', 'joliverie', 'btssio');
 
 --
 -- Contraintes pour les tables exportées
