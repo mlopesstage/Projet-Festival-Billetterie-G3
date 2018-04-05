@@ -16,27 +16,25 @@ import modele.dao.DaoUtilisateur;
 import modele.metier.Utilisateur;
 
 public class CtrlConnexionDistante implements WindowListener, ActionListener {
-    
+
     VueConnexionLocal vue = new VueConnexionLocal();
     private CtrlPrincipal ctrlPrincipal;
-    
-    public CtrlConnexionDistante(VueConnexionLocal vue,CtrlPrincipal ctrl) {
-        
-        
+
+    public CtrlConnexionDistante(VueConnexionLocal vue, CtrlPrincipal ctrl) {
+
         this.vue = vue;
         this.vue.addWindowListener(this);
         vue.getjTextFieldUtil().addActionListener(this);
         vue.getjTextFieldMdp().addActionListener(this);
         vue.getjButtonRetour().addActionListener(this);
-        vue.getjButtonValider().addActionListener(this);   
-        vue.getjCheckBoxConnexion().addActionListener(this);
+        vue.getjButtonValider().addActionListener(this);
         this.ctrlPrincipal = ctrl;
     }
-    
+
     final Properties prop = new Properties();
     InputStream input = null;
-    
-        /**
+
+    /**
      * Quitter l'application, après demande de confirmation
      */
     private void quitter() {
@@ -55,10 +53,9 @@ public class CtrlConnexionDistante implements WindowListener, ActionListener {
     public void setVue(VueConnexionLocal vue) {
         this.vue = vue;
     }
-    
 
     @Override
-    public void windowOpened(WindowEvent e) {   
+    public void windowOpened(WindowEvent e) {
     }
 
     @Override
@@ -71,18 +68,18 @@ public class CtrlConnexionDistante implements WindowListener, ActionListener {
 
     @Override
     public void windowIconified(WindowEvent e) {
-        
+
     }
 
     @Override
-    public void windowDeiconified(WindowEvent e) {  
+    public void windowDeiconified(WindowEvent e) {
     }
 
     @Override
-    public void windowActivated(WindowEvent e) {              
+    public void windowActivated(WindowEvent e) {
         vue.getjTextFieldUtil().setText("");
         vue.getjTextFieldMdp().setText("");
-        vue.getjLabelConnexionReussie().setText("");   
+        vue.getjLabelConnexionReussie().setText("");
     }
 
     @Override
@@ -93,35 +90,33 @@ public class CtrlConnexionDistante implements WindowListener, ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(vue.getjButtonRetour())) {
             ctrlPrincipal.afficherLeMenu();
-        }        
-        if (vue.getjCheckBoxConnexion().isSelected() && (e.getSource().equals(vue.getjButtonValider()) || e.getSource().equals(vue.getjTextFieldUtil())
-            || e.getSource().equals(vue.getjTextFieldMdp()))) {           
+        }
+        if ((e.getSource().equals(vue.getjButtonValider()) || e.getSource().equals(vue.getjTextFieldUtil())
+                || e.getSource().equals(vue.getjTextFieldMdp()))) {
             //if (e.getSource().equals(vue.getjButtonValider()) 
             //|| e.getSource().equals(vue.getjTextFieldUtil())
             //|| e.getSource().equals(vue.getjTextFieldMdp())) {
-                
-                String util = vue.getjTextFieldUtil().getText();
-                String mdp = vue.getjTextFieldMdp().getText();
-                util = Encryptage.encrypt(util, "b");
-                mdp = Encryptage.encrypt(mdp, "f");
-                try {
-                    input = new FileInputStream("src/domaine/properties/util.properties");
-                    prop.load(input);
-                    if (util.equals(prop.getProperty("util1")) && mdp.equals(prop.getProperty("mdp1"))) {
-                        vue.getjLabelConnexionReussie().setText("Connexion réussie");                 
-                        util = vue.getjTextFieldUtil().getText();
-                        ctrlPrincipal.setConnecter(util);
-                        ctrlPrincipal.afficherLeMenu();
-                    } else {
-                        vue.getjLabelConnexionReussie().setText("Utilisateur ou mot de passe incorrect");
-                    }
-                } catch (final IOException ex) {
-                    ex.printStackTrace();              
+
+            String util = vue.getjTextFieldUtil().getText();
+            String mdp = vue.getjTextFieldMdp().getText();
+            util = Encryptage.encrypt(util, "b");
+            mdp = Encryptage.encrypt(mdp, "f");
+            try {
+                input = new FileInputStream("src/domaine/properties/util.properties");
+                prop.load(input);
+                if (util.equals(prop.getProperty("util1")) && mdp.equals(prop.getProperty("mdp1"))) {
+                    vue.getjLabelConnexionReussie().setText("Connexion réussie");
+                    util = vue.getjTextFieldUtil().getText();
+                    ctrlPrincipal.setConnecter(util);
+                    ctrlPrincipal.afficherLeMenu();
+                } else {
+                    vue.getjLabelConnexionReussie().setText("Utilisateur ou mot de passe incorrect");
                 }
-            } else {
-            vue.getjLabelConnexionReussie().setText("Connexion distante non disponible");
-        } 
+            } catch (final IOException ex) {
+                ex.printStackTrace();
+            }
+        }
 
     }
-    
+
 }
