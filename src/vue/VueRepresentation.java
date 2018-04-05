@@ -17,6 +17,7 @@ public class VueRepresentation extends javax.swing.JFrame {
         initComponents();
         modeleTableRepresentation = new  DefaultTableModel();
         jTableRepresentation.setModel(modeleTableRepresentation);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
     }
 
     /**
