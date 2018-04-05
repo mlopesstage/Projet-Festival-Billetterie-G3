@@ -29,7 +29,6 @@ public class CtrlConnexionLocal implements WindowListener, ActionListener {
         vue.getjTextFieldMdp().addActionListener(this);
         vue.getjButtonRetour().addActionListener(this);
         vue.getjButtonValider().addActionListener(this);   
-        vue.getjCheckBoxConnexion().addActionListener(this);
         this.ctrlPrincipal = ctrl;
     }
     
@@ -94,32 +93,30 @@ public class CtrlConnexionLocal implements WindowListener, ActionListener {
         if (e.getSource().equals(vue.getjButtonRetour())) {
             ctrlPrincipal.afficherLeMenu();
         }        
-        if (vue.getjCheckBoxConnexion().isSelected() && (e.getSource().equals(vue.getjButtonValider()) || e.getSource().equals(vue.getjTextFieldUtil())
+        if ((e.getSource().equals(vue.getjButtonValider()) || e.getSource().equals(vue.getjTextFieldUtil())
             || e.getSource().equals(vue.getjTextFieldMdp()))) {           
             //if (e.getSource().equals(vue.getjButtonValider()) 
             //|| e.getSource().equals(vue.getjTextFieldUtil())
             //|| e.getSource().equals(vue.getjTextFieldMdp())) {
                 
-                String util = vue.getjTextFieldUtil().getText();
-                String mdp = vue.getjTextFieldMdp().getText();
-                util = Encryptage.encrypt(util, "b");
-                mdp = Encryptage.encrypt(mdp, "f");
-                try {
-                    input = new FileInputStream("src/domaine/properties/util.properties");
-                    prop.load(input);
-                    if (util.equals(prop.getProperty("util1")) && mdp.equals(prop.getProperty("mdp1"))) {
-                        vue.getjLabelConnexionReussie().setText("Connexion réussie");                 
-                        util = vue.getjTextFieldUtil().getText();
-                        ctrlPrincipal.setConnecter(util);
-                        ctrlPrincipal.afficherLeMenu();
-                    } else {
-                        vue.getjLabelConnexionReussie().setText("Utilisateur ou mot de passe incorrect");
-                    }
-                } catch (final IOException ex) {
-                    ex.printStackTrace();              
+            String util = vue.getjTextFieldUtil().getText();
+            String mdp = vue.getjTextFieldMdp().getText();
+            util = Encryptage.encrypt(util, "b");
+            mdp = Encryptage.encrypt(mdp, "f");
+            try {
+                input = new FileInputStream("src/domaine/properties/util.properties");
+                prop.load(input);
+                if (util.equals(prop.getProperty("util1")) && mdp.equals(prop.getProperty("mdp1"))) {
+                    vue.getjLabelConnexionReussie().setText("Connexion réussie");                 
+                    util = vue.getjTextFieldUtil().getText();
+                    ctrlPrincipal.setConnecter(util);
+                    ctrlPrincipal.afficherLeMenu();
+                } else {
+                    vue.getjLabelConnexionReussie().setText("Utilisateur ou mot de passe incorrect");
                 }
-            } else {
-            vue.getjLabelConnexionReussie().setText("Connexion distante non disponible");
+            } catch (final IOException ex) {
+                ex.printStackTrace();              
+            }            
         } 
 
     }

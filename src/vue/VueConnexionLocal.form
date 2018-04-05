@@ -41,7 +41,6 @@
                                       </Group>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jCheckBoxConnexion" min="-2" max="-2" attributes="0"/>
                                           <Component id="jTextFieldUtil" min="-2" pref="130" max="-2" attributes="0"/>
                                           <Component id="jTextFieldMdp" min="-2" pref="131" max="-2" attributes="0"/>
                                       </Group>
@@ -78,9 +77,7 @@
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jTextFieldMdp" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jCheckBoxConnexion" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
               <Component id="jLabelConnexionReussie" min="-2" pref="18" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -142,14 +139,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JPasswordField" name="jTextFieldMdp">
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="jCheckBoxConnexion">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Connexion Locale"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBoxConnexionActionPerformed"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>
