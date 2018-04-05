@@ -12,6 +12,7 @@ import java.io.InputStream;
 import java.util.Properties;
 import javax.swing.JOptionPane;
 import chiffrage.Encryptage;
+import java.security.MessageDigest;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import modele.dao.DaoUtilisateur;
 import modele.metier.Utilisateur;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class CtrlConnexionDistante implements WindowListener, ActionListener {
 
@@ -95,32 +98,51 @@ public class CtrlConnexionDistante implements WindowListener, ActionListener {
         }
         if ((e.getSource().equals(vue.getjButtonValider()) || e.getSource().equals(vue.getjTextFieldUtil())
                 || e.getSource().equals(vue.getjTextFieldMdp()))) {
-            //if (e.getSource().equals(vue.getjButtonValider()) 
-            //|| e.getSource().equals(vue.getjTextFieldUtil())
-            //|| e.getSource().equals(vue.getjTextFieldMdp())) {
-
-            String util = vue.getjTextFieldUtil().getText();
-            String mdp = vue.getjTextFieldMdp().getText();
-            util = Encryptage.encrypt(util, "b");
-            mdp = Encryptage.encrypt(mdp, "f");
-            boolean connexion = false;
             try {
-                List<Utilisateur> lesUtilisateurs = new ArrayList<Utilisateur>();
-                lesUtilisateurs = DaoUtilisateur.selectAll();
-                for(Utilisateur unUtilisateur : lesUtilisateurs){
-                if (util.equals(unUtilisateur.getLogin()) && mdp.equals(unUtilisateur.getPassword())) {
-                    connexion = true;
-                    break;
+                //if (e.getSource().equals(vue.getjButtonValider())
+                //|| e.getSource().equals(vue.getjTextFieldUtil())
+                //|| e.getSource().equals(vue.getjTextFieldMdp())) {
+                
+                String util = vue.getjTextFieldUtil().getText();
+                String mdp = vue.getjTextFieldMdp().getText();
+                
+                MessageDigest mdUtil = MessageDigest.getInstance("MD5");
+                mdUtil.update(util.getBytes());
+                byte[] digestUtil = mdUtil.digest();
+                StringBuffer sbUtil = new StringBuffer();
+                for (byte b : digestUtil) {
+                    sbUtil.append(String.format("%02x", b & 0xff));
                 }
+                
+                MessageDigest mdMdp = MessageDigest.getInstance("MD5");
+                mdMdp.update(mdp.getBytes());
+                byte[] digestMdp = mdMdp.digest();
+                StringBuffer sbMdp = new StringBuffer();
+                for (byte b : digestMdp) {
+                    sbMdp.append(String.format("%02x", b & 0xff));
                 }
-                if (connexion) {
-                    vue.getjLabelConnexionReussie().setText("Connexion réussie");
-                    util = vue.getjTextFieldUtil().getText();
-                    ctrlPrincipal.setConnecter(util);
-                } else {
-                    vue.getjLabelConnexionReussie().setText("Utilisateur ou mot de passe incorrect");
+                
+                boolean connexion = false;
+                try {
+                    List<Utilisateur> lesUtilisateurs = new ArrayList<Utilisateur>();
+                    lesUtilisateurs = DaoUtilisateur.selectAll();
+                    for(Utilisateur unUtilisateur : lesUtilisateurs){
+                        if (sbUtil.toString().equals(unUtilisateur.getLogin()) && sbMdp.toString().equals(unUtilisateur.getPassword())) {
+                            connexion = true;
+                            break;
+                        }
+                    }
+                    if (connexion) {
+                        vue.getjLabelConnexionReussie().setText("Connexion réussie");
+                        util = vue.getjTextFieldUtil().getText();
+                        ctrlPrincipal.setConnecter(util);
+                    } else {
+                        vue.getjLabelConnexionReussie().setText("Utilisateur ou mot de passe incorrect");
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(CtrlConnexionDistante.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            } catch (SQLException ex) {
+            } catch (NoSuchAlgorithmException ex) {
                 Logger.getLogger(CtrlConnexionDistante.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
