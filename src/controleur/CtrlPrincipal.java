@@ -1,6 +1,12 @@
 package controleur;
 
+import Main.Main;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.SQLException;
+import java.util.Properties;
 import javax.swing.JOptionPane;
+import modele.dao.Jdbc;
 
 public class CtrlPrincipal {
     
@@ -11,6 +17,10 @@ public class CtrlPrincipal {
     private CtrlConnexionDistante ctrlConnexionDistante;
     private int idRep;
     private String connecter = null;
+    
+    final Properties prop = new Properties();
+    InputStream input = null;
+    
     
     public void afficherLeMenu() {
         this.ctrlLesRepresentations.getVue().setVisible(false);
@@ -50,6 +60,66 @@ public class CtrlPrincipal {
         this.ctrlMenu.getVue().setVisible(false);
         this.ctrlConnexionLocal.getVue().setVisible(false);
         this.ctrlConnexionDistante.getVue().setVisible(true);
+    }
+    
+    public void connexionLocale(){
+        final Properties prop = new Properties();
+	InputStream input = null;
+                       
+        try {
+          
+            //input = new FileInputStream("src/config.properties");
+            input = Main.class.getResourceAsStream( "config.properties" );
+
+
+            // load a properties file
+            prop.load(input);
+
+            // get the property value and print it out
+            String pilote = prop.getProperty("pilote");
+            String protocole = prop.getProperty("protocole");
+            String serveur = prop.getProperty("serveurLoc");
+            String base = prop.getProperty("baseLoc");
+            String login = prop.getProperty("loginLoc");
+            String mdp = prop.getProperty("mdpLoc");
+            Jdbc.creer(pilote, protocole, serveur, base, login, mdp);
+            try {
+                Jdbc.getInstance().connecter();
+            } catch (ClassNotFoundException ex) {
+                JOptionPane.showMessageDialog(null, "Main - classe JDBC non trouvée");
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Main - échec de connexion");
+            }
+        } catch (final IOException ex) {
+            ex.printStackTrace();
+	} finally {
+            if (input != null) {
+		try {
+                    input.close();
+		} catch (final IOException e) {
+                    e.printStackTrace();
+		}
+            }
+        }
+    }
+    
+    public void connexionDistante(){
+        try {
+            //input = new FileInputStream("src/config.properties");
+            input = Main.class.getResourceAsStream( "config.properties" );
+            // load a properties file
+            prop.load(input);    
+        } catch (final IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            if (input != null) {
+                try {
+                    input.close();
+                } catch (final IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
     
     public void quitter() {

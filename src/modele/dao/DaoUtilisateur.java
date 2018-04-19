@@ -35,6 +35,32 @@ public class DaoUtilisateur {
         }
         return unUtilisateur;
     }
+    
+        /**
+     * Extraction d'un utilisateur, sur son identifiant
+     * @param id identifiant
+     * @return objet Utilisateur
+     * @throws SQLException 
+     */
+    public static Utilisateur selectOneByLoginMdp(String login, String mdp) throws SQLException {
+        Utilisateur unUtilisateur = null;
+        ResultSet rs;
+        PreparedStatement pstmt;
+        JdbcDistant jdbcDistant = JdbcDistant.getInstance();
+        // préparer la requête
+        String requete = "SELECT * FROM Utilisateur WHERE login= ? AND password=?";
+        pstmt = jdbcDistant.getConnexion().prepareStatement(requete);
+        pstmt.setString(1, login);
+        pstmt.setString(2, mdp);
+        rs = pstmt.executeQuery();
+        if (rs.next()) {
+            int idUtil = rs.getInt("id");
+            String nom = rs.getString("nom");
+            String prenom = rs.getString("prenom");
+            unUtilisateur = new Utilisateur(idUtil, login, mdp, nom, prenom);
+        }
+        return unUtilisateur;
+    }
 
     /**
      * Extraction de tout les utilisateurs
@@ -46,10 +72,10 @@ public class DaoUtilisateur {
         Utilisateur unUtilisateur;
         ResultSet rs;
         PreparedStatement pstmt;
-        Jdbc jdbc = Jdbc.getInstance();
+        JdbcDistant jdbcDistant = JdbcDistant.getInstance();
         // préparer la requête
         String requete = "SELECT * FROM Utilisateur";
-        pstmt = jdbc.getConnexion().prepareStatement(requete);
+        pstmt = jdbcDistant.getConnexion().prepareStatement(requete);
         rs = pstmt.executeQuery();
         while (rs.next()) {
             int idUtil = rs.getInt("id");

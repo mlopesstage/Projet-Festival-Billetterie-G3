@@ -1,5 +1,6 @@
 package controleur;
 
+import Main.Main;
 import vue.VueConnexionDistante;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,6 +23,9 @@ import modele.dao.DaoUtilisateur;
 import modele.metier.Utilisateur;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import static jdk.nashorn.tools.ShellFunctions.input;
+import modele.dao.Jdbc;
+import modele.dao.JdbcDistant;
 
 public class CtrlConnexionDistante implements WindowListener, ActionListener {
 
@@ -98,53 +102,82 @@ public class CtrlConnexionDistante implements WindowListener, ActionListener {
         }
         if ((e.getSource().equals(vue.getjButtonValider()) || e.getSource().equals(vue.getjTextFieldUtil())
                 || e.getSource().equals(vue.getjTextFieldMdp()))) {
+            Properties prop = new Properties();
+            InputStream input = null;
+
+            //input = new FileInputStream("src/config.properties");
+            input = Main.class.getResourceAsStream("config.properties");
+
             try {
-                //if (e.getSource().equals(vue.getjButtonValider())
-                //|| e.getSource().equals(vue.getjTextFieldUtil())
-                //|| e.getSource().equals(vue.getjTextFieldMdp())) {
-                
-                String util = vue.getjTextFieldUtil().getText();
-                String mdp = vue.getjTextFieldMdp().getText();
-                
-                MessageDigest mdUtil = MessageDigest.getInstance("MD5");
-                mdUtil.update(util.getBytes());
-                byte[] digestUtil = mdUtil.digest();
-                StringBuffer sbUtil = new StringBuffer();
-                for (byte b : digestUtil) {
-                    sbUtil.append(String.format("%02x", b & 0xff));
-                }
-                
-                MessageDigest mdMdp = MessageDigest.getInstance("MD5");
-                mdMdp.update(mdp.getBytes());
-                byte[] digestMdp = mdMdp.digest();
-                StringBuffer sbMdp = new StringBuffer();
-                for (byte b : digestMdp) {
-                    sbMdp.append(String.format("%02x", b & 0xff));
-                }
-                
-                boolean connexion = false;
+                // load a properties file
+                prop.load(input);
+
+                // get the property value and print it out
+                String pilote = prop.getProperty("piloteDist");
+                String protocole = prop.getProperty("protocoleDist");
+                String serveur = prop.getProperty("serveurDist");
+                String base = prop.getProperty("baseDist");
+                String login = prop.getProperty("loginDist");
+                String mdpCon = prop.getProperty("mdpDist");
+                JdbcDistant.creer(pilote, protocole, serveur, base, login, mdpCon);
+
                 try {
-                    List<Utilisateur> lesUtilisateurs = new ArrayList<Utilisateur>();
-                    lesUtilisateurs = DaoUtilisateur.selectAll();
-                    for(Utilisateur unUtilisateur : lesUtilisateurs){
-                        if (sbUtil.toString().equals(unUtilisateur.getLogin()) && sbMdp.toString().equals(unUtilisateur.getPassword())) {
-                            connexion = true;
-                            break;
+                    JdbcDistant.getInstance().connecter();
+                    try {
+                        //if (e.getSource().equals(vue.getjButtonValider())
+                        //|| e.getSource().equals(vue.getjTextFieldUtil())
+                        //|| e.getSource().equals(vue.getjTextFieldMdp())) {
+
+                        String util = vue.getjTextFieldUtil().getText();
+                        String mdp = vue.getjTextFieldMdp().getText();
+
+                        MessageDigest mdUtil = MessageDigest.getInstance("MD5");
+                        mdUtil.update(util.getBytes());
+                        byte[] digestUtil = mdUtil.digest();
+                        StringBuffer sbUtil = new StringBuffer();
+                        for (byte b : digestUtil) {
+                            sbUtil.append(String.format("%02x", b & 0xff));
                         }
+
+                        MessageDigest mdMdp = MessageDigest.getInstance("MD5");
+                        mdMdp.update(mdp.getBytes());
+                        byte[] digestMdp = mdMdp.digest();
+                        StringBuffer sbMdp = new StringBuffer();
+                        for (byte b : digestMdp) {
+                            sbMdp.append(String.format("%02x", b & 0xff));
+                        }
+
+                        boolean connexion = false;
+                        try {
+                            Utilisateur unUtilisateur;
+                            unUtilisateur = DaoUtilisateur.selectOneByLoginMdp(sbUtil.toString(),sbMdp.toString());
+                           
+                            connexion = unUtilisateur != null;
+                            
+                            if (connexion) {
+                                vue.getjLabelConnexionReussie().setText("Connexion réussie : "+unUtilisateur.getNom());
+                                util = vue.getjTextFieldUtil().getText();
+                                ctrlPrincipal.setConnecter(util);
+                            } else {
+                                vue.getjLabelConnexionReussie().setText("Utilisateur ou mot de passe incorrect");
+                            }
+                        } catch (SQLException ex) {
+                            Logger.getLogger(CtrlConnexionDistante.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    } catch (NoSuchAlgorithmException ex) {
+                        Logger.getLogger(CtrlConnexionDistante.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    if (connexion) {
-                        vue.getjLabelConnexionReussie().setText("Connexion réussie");
-                        util = vue.getjTextFieldUtil().getText();
-                        ctrlPrincipal.setConnecter(util);
-                    } else {
-                        vue.getjLabelConnexionReussie().setText("Utilisateur ou mot de passe incorrect");
-                    }
+
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(CtrlConnexionDistante.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
                     Logger.getLogger(CtrlConnexionDistante.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            } catch (NoSuchAlgorithmException ex) {
+
+            } catch (IOException ex) {
                 Logger.getLogger(CtrlConnexionDistante.class.getName()).log(Level.SEVERE, null, ex);
             }
+
         }
     }
 }
