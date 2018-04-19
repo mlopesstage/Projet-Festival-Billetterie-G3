@@ -146,7 +146,5 @@ public class CtrlConnexionDistante implements WindowListener, ActionListener {
                 Logger.getLogger(CtrlConnexionDistante.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
     }
-
 }

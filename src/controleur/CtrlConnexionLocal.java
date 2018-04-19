@@ -59,7 +59,6 @@ public class CtrlConnexionLocal implements WindowListener, ActionListener {
     public void setVue(VueConnexionLocal vue) {
         this.vue = vue;
     }
-    
 
     @Override
     public void windowOpened(WindowEvent e) {   
@@ -127,7 +126,7 @@ public class CtrlConnexionLocal implements WindowListener, ActionListener {
                 //util = Encryptage.encrypt(util, "b");
                 //mdp = Encryptage.encrypt(mdp, "f");
                 try {
-                    input = CtrlConnexionLocal.class.getResourceAsStream("util.properties");
+                    input = CtrlConnexionLocal.class.getResourceAsStream("/Main/config.properties");
                     prop.load(input);
                     if (sbUtil.toString().equals(prop.getProperty("util1")) && sbMdp.toString().equals(prop.getProperty("mdp1"))) {
                         vue.getjLabelConnexionReussie().setText("Connexion réussie");

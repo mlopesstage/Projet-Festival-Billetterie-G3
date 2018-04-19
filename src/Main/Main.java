@@ -35,10 +35,10 @@ public class Main {
             // get the property value and print it out
             String pilote = prop.getProperty("pilote");
             String protocole = prop.getProperty("protocole");
-            String serveur = prop.getProperty("serveur");
-            String base = prop.getProperty("base");
-            String login = prop.getProperty("login");
-            String mdp = prop.getProperty("mdp");
+            String serveur = prop.getProperty("serveurLoc");
+            String base = prop.getProperty("baseLoc");
+            String login = prop.getProperty("loginLoc");
+            String mdp = prop.getProperty("mdpLoc");
             Jdbc.creer(pilote, protocole, serveur, base, login, mdp);
             try {
                 Jdbc.getInstance().connecter();
