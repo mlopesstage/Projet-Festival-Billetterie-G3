@@ -1,5 +1,6 @@
 package controleur;
 
+import Main.Main;
 import vue.VueConnexionLocal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -126,7 +127,7 @@ public class CtrlConnexionLocal implements WindowListener, ActionListener {
                 //util = Encryptage.encrypt(util, "b");
                 //mdp = Encryptage.encrypt(mdp, "f");
                 try {
-                    input = CtrlConnexionLocal.class.getResourceAsStream("/Main/config.properties");
+                    input = Main.class.getResourceAsStream("config.properties");
                     prop.load(input);
                     if (sbUtil.toString().equals(prop.getProperty("util1")) && sbMdp.toString().equals(prop.getProperty("mdp1"))) {
                         vue.getjLabelConnexionReussie().setText("Connexion réussie");
@@ -142,8 +143,6 @@ public class CtrlConnexionLocal implements WindowListener, ActionListener {
             } catch (NoSuchAlgorithmException ex) {
                 Logger.getLogger(CtrlConnexionLocal.class.getName()).log(Level.SEVERE, null, ex);
             }            
-        } 
-
+        }
     }
-    
 }

@@ -16,14 +16,14 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 
-CREATE USER IF NOT EXISTS 'festival2_g3_ut'@'localhost' IDENTIFIED BY 'f2_g3_mdp';
-GRANT ALL PRIVILEGES ON festival2.*TO 'festival2_g3_ut'@'localhost';
+CREATE USER IF NOT EXISTS 'mlopes_festival'@'localhost' IDENTIFIED BY 'mlopes';
+GRANT ALL PRIVILEGES ON mlopes_festival2.*TO 'mlopes_festival'@'localhost';
 
 --
--- Database: `festival2`
+-- Database: `mlopes_festival2`
 --
-CREATE DATABASE IF NOT EXISTS `festival2` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
-USE `festival2`;
+CREATE DATABASE IF NOT EXISTS `mlopes_festival2` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
+USE `mlopes_festival2`;
 
 --
 -- Structure de la table `Attribution`

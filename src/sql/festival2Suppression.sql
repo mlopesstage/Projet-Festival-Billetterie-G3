@@ -1,2 +1,2 @@
-DROP DATABASE festival2;
-DROP USER 'festival2_g3_ut'@'localhost';
+DROP DATABASE mlopes_festival2;
+DROP USER 'mlopes_festival'@'localhost';
